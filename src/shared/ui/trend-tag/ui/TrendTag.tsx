@@ -24,8 +24,8 @@ export const TrendTag: React.FC<TrendTagProps> = ({
   return (
     <div className="trend-tag">
       {showText && (
-        <span className="body-regular">
-          {value}
+        <span className="caption">
+          {direction === 'up' ? `+${value}` : direction === 'down' ? `-${value}` : value}
           {unit ? ` ${unit}` : ''}
         </span>
       )}

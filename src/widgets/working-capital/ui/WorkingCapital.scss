@@ -1,0 +1,16 @@
+@use '@/app/styles/mixins.scss' as mix;
+
+.working-capital {
+  @include mix.widget;
+
+  .wc__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .wc__wrapper {
+    display: flex;
+    gap: 12px;
+  }
+}

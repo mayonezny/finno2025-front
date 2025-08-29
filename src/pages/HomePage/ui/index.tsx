@@ -3,9 +3,11 @@ import React from 'react';
 import { formatCompactNumber } from '@/shared/lib/format/number';
 import { TEST_MULTI_COLOR } from '@/shared/ui/bar-chart/fixtures/multi.example';
 import { DetailCard, type DetailCardData } from '@/shared/ui/detail-card';
+import { KpiCard } from '@/shared/ui/kpi-card';
 import { CashflowTreemap } from '@/widgets/cashflow-treemap';
 import { LiquidityBuffer } from '@/widgets/liquidity-buffer/ui/LiquidityBuffer';
 import { RepaymentChart } from '@/widgets/repayment-chart/ui/RepaymentChart';
+import { WorkingCapital } from '@/widgets/working-capital';
 
 const treemap_data = [
   { id: 'sber-1', title: 'Сбербанк', value: 4_200_000 },
@@ -66,11 +68,27 @@ export const HomePage: React.FC = () => (
       }}
     />
 
+    <KpiCard
+      title="Выручка"
+      value={1_245_000}
+      unit=""
+      colorRule={(v) => (v > 0 ? 'green' : v < 0 ? 'red' : 'blue')}
+      trendTag={{ value: 15, unit: '%', direction: 'up', showText: true }}
+    />
+
     <CashflowTreemap
       title="Карта денежных потоков"
       HHI={0.29}
       data={treemap_data}
       onTileClick={(item) => console.log('tile clicked', item)}
+    />
+
+    <WorkingCapital
+      data={{
+        dso: { value: 35, trendValue: 2, trendDirection: 'up' },
+        dpo: { value: 25, trendValue: 1, trendDirection: 'down' },
+        dio: { value: 40, trendValue: 0, trendDirection: 'none' },
+      }}
     />
 
     <DetailCard
@@ -84,7 +102,7 @@ export const HomePage: React.FC = () => (
 
     <LiquidityBuffer
       title="Буфер ликвидности"
-      trend={{ value: -4, unit: 'дня', direction: 'down', showText: true }}
+      trend={{ value: 4, unit: 'дня', direction: 'down', showText: true }}
       progress={{
         value: 12,
         max: 60,
