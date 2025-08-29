@@ -84,7 +84,7 @@ export const LiquidityBuffer: React.FC<LiquidityBufferProps> = ({
                 <div className="body-regular">{it.title}</div>
                 <div className="body-medium">{formatCompactNumber(it.amount)}</div>
                 {typeof it.sharePct === 'number' && (
-                  <div className="grey-caption">{it.sharePct}%</div>
+                  <div className="body-regular">{it.sharePct}%</div>
                 )}
                 {it.trend && (
                   <div
@@ -94,7 +94,7 @@ export const LiquidityBuffer: React.FC<LiquidityBufferProps> = ({
                           ? 'lb-trend-plus'
                           : it.trend.direction === 'down'
                             ? 'lb-trend-minus'
-                            : 'grey-caption'
+                            : 'body-regular'
                       }
                     `}
                   >
