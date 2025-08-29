@@ -87,7 +87,7 @@ export const BarChart: React.FC<BarChartProps> = ({
               </div>
 
               {showValues && <div className="h3">{formatCompactNumber(total)}</div>}
-              {showLabels && <div className="bar-caption caption">{d.date}</div>}
+              {showLabels && <div className="grey-caption">{d.date}</div>}
             </div>
           );
         })}

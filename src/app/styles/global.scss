@@ -119,3 +119,8 @@ body,
     line-height: 16px;
   }
 }
+
+.grey-caption {
+  @extend .caption;
+  color: var(--color-caption);
+}

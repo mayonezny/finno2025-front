@@ -8,16 +8,14 @@ type Props = {
   title?: string;
   data: TreemapItem[];
   onTileClick?: (item: TreemapItem) => void;
-  infoCardType?: infoCardType;
-  infoCardText: string;
+  HHI: number;
 };
 
 export const CashflowTreemap: React.FC<Props> = ({
   title = 'Карта денежных потоков',
   data,
   onTileClick,
-  infoCardType = 'neutral',
-  infoCardText,
+  HHI,
 }) => {
   const total = data.reduce((s, d) => s + d.value, 0);
 
@@ -27,7 +25,7 @@ export const CashflowTreemap: React.FC<Props> = ({
     <div className="cashflow-treemap">
       <div className="cashflow-treemap__header">
         <div className="h2">{title}</div>
-        <InfoCard name={infoCardText} type={infoCardType} />
+        <InfoCard name={`HHI: ${HHI}`} type={HHI > 0.3 ? 'neutral' : 'negative'} />
       </div>
 
       <div className="cashflow-treemap__body">

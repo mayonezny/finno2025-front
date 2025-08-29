@@ -2,7 +2,6 @@
 
 .cashflow-treemap {
   @include mix.widget;
-  max-width: 530px;
   &__header {
     display: flex;
     justify-content: space-between;

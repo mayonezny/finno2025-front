@@ -6,6 +6,7 @@
   border: var(--border);
   border-radius: var(--border-radius);
   width: auto;
+  max-width: 592px;
 
   @media (max-width: 768px) {
     padding: 12px 18px;
