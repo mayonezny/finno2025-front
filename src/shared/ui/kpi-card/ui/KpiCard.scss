@@ -4,7 +4,6 @@
   flex-direction: column;
   gap: 4px;
   justify-content: space-between;
-  width: 100%;
 
   &--bordered {
     border: var(--border);
@@ -13,7 +12,8 @@
 
 .kpi-card__top {
   display: flex;
-  align-items: center;
+  align-items: start;
+  gap: 4px;
   justify-content: space-between;
   @media (max-width: 768px) {
     flex-direction: column;

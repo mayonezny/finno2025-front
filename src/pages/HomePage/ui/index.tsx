@@ -3,8 +3,8 @@ import React from 'react';
 import { formatCompactNumber } from '@/shared/lib/format/number';
 import { TEST_MULTI_COLOR } from '@/shared/ui/bar-chart/fixtures/multi.example';
 import { DetailCard, type DetailCardData } from '@/shared/ui/detail-card';
-import { KpiCard } from '@/shared/ui/kpi-card';
 import { CashflowTreemap } from '@/widgets/cashflow-treemap';
+import { KpiStats } from '@/widgets/kpi-stats';
 import { LiquidityBuffer } from '@/widgets/liquidity-buffer/ui/LiquidityBuffer';
 import { RepaymentChart } from '@/widgets/repayment-chart/ui/RepaymentChart';
 import { WorkingCapital } from '@/widgets/working-capital';
@@ -29,7 +29,71 @@ const weeklyBars = [
 ];
 
 export const HomePage: React.FC = () => (
-  <div style={{ padding: 24, display: 'grid', gap: 32 }}>
+  <div
+    style={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      width: '100%',
+      padding: '36px 16px',
+      gap: '32px',
+    }}
+  >
+    {/* <KpiStats
+      layout="horizontal"
+      metrics={[
+        {
+          title: 'Свободные деньги',
+          value: 2_400_000,
+          unit: '₽',
+          colorRule: (v: number) => (v > 0 ? 'green' : 'red'),
+          trend: { value: 15, unit: '%', direction: 'up' },
+        },
+        {
+          title: 'Невыбранные лимиты',
+          value: 5_200_000,
+          unit: '₽',
+          colorRule: () => 'blue',
+          trend: { value: 0, unit: '%', direction: 'none' },
+        },
+        {
+          title: 'Буфер ликвидности',
+          value: 18,
+          unit: 'дней',
+          colorRule: (v: number) => (v > 0 ? 'green' : 'red'),
+          trend: { value: 4, unit: 'д', direction: 'down' },
+        },
+        {
+          title: 'Чистый долг',
+          value: -1_200_000,
+          unit: '₽',
+          colorRule: (v: number) => (v > 0 ? 'red' : 'green'),
+          trend: { value: 8, unit: '%', direction: 'down' },
+        },
+        {
+          title: 'CCC',
+          value: 45,
+          unit: 'дней',
+          colorRule: (v: number) => (v > 0 ? 'red' : 'green'),
+          trend: { value: 12, unit: 'д', direction: 'up' },
+        },
+        {
+          title: 'Покрытие долгов',
+          value: 2.8,
+          unit: '×',
+          colorRule: (v: number) => (v > 0 ? 'green' : 'red'),
+          trend: { value: 0.5, unit: 'x', direction: 'down' },
+        },
+      ]}
+    /> */}
+
+    <CashflowTreemap
+      title="Карта денежных потоков"
+      HHI={0.29}
+      data={treemap_data}
+      onTileClick={(item) => console.log('tile clicked', item)}
+    />
+
     <RepaymentChart
       title="График погашения"
       WACD={8.5}
@@ -67,39 +131,6 @@ export const HomePage: React.FC = () => (
         details: `${TEST_MULTI_COLOR[0].values[0].label}: ${formatCompactNumber(TEST_MULTI_COLOR[0].values[0].value)} + ${TEST_MULTI_COLOR[0].values[1].label}: ${formatCompactNumber(TEST_MULTI_COLOR[0].values[1].value)}`,
       }}
     />
-
-    <KpiCard
-      title="Выручка"
-      value={1_245_000}
-      unit=""
-      colorRule={(v) => (v > 0 ? 'green' : v < 0 ? 'red' : 'blue')}
-      trendTag={{ value: 15, unit: '%', direction: 'up', showText: true }}
-    />
-
-    <CashflowTreemap
-      title="Карта денежных потоков"
-      HHI={0.29}
-      data={treemap_data}
-      onTileClick={(item) => console.log('tile clicked', item)}
-    />
-
-    <WorkingCapital
-      data={{
-        dso: { value: 35, trendValue: 2, trendDirection: 'up' },
-        dpo: { value: 25, trendValue: 1, trendDirection: 'down' },
-        dio: { value: 40, trendValue: 0, trendDirection: 'none' },
-      }}
-    />
-
-    <DetailCard
-      defaultOpen
-      data={{
-        title: '12 января — ближайший платёж',
-        amount: 2_400_000,
-        details: 'Кредит 1.5M + Облигации 0.9M',
-      }}
-    />
-
     <LiquidityBuffer
       title="Буфер ликвидности"
       trend={{ value: 4, unit: 'дня', direction: 'down', showText: true }}
@@ -148,6 +179,14 @@ export const HomePage: React.FC = () => (
             trend: { value: 5, direction: 'down', unit: '%' },
           },
         ],
+      }}
+    />
+
+    <WorkingCapital
+      data={{
+        dso: { value: 35, trendValue: 2, trendDirection: 'up' },
+        dpo: { value: 25, trendValue: 1, trendDirection: 'down' },
+        dio: { value: 40, trendValue: 0, trendDirection: 'none' },
       }}
     />
   </div>

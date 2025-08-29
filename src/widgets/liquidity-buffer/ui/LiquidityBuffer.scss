@@ -36,8 +36,13 @@
   flex-direction: column;
   gap: 12px;
   padding: 32px 24px 18px 24px;
-  max-height: 0;
   opacity: 0;
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  transform: translateY(-64px);
+
   overflow: hidden;
   pointer-events: none;
   background-color: var(--color-second-bg);
@@ -47,6 +52,7 @@
     transform 0.32s ease;
 
   &.is-open {
+    position: relative;
     max-height: 520px;
     opacity: 1;
     pointer-events: auto;
