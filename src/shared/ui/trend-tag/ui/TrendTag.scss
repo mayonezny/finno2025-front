@@ -1,0 +1,17 @@
+.trend-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.trend-icon {
+  &--up {
+    color: var(--color-dark-green);
+  }
+  &--down {
+    color: var(--color-dark-red);
+  }
+  &--none {
+    color: var(--color-dark-blue);
+  }
+}

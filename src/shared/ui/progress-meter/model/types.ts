@@ -13,8 +13,4 @@ export type ProgressMeterProps = {
     maxShort?: string;
     of?: string;
   };
-
-  height?: number;
-  radius?: number;
-  trackColor?: string;
 };

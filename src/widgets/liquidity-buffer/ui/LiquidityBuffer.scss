@@ -1,0 +1,83 @@
+@use '@/app/styles/mixins.scss' as mix;
+
+.liquidity-buffer-wrap {
+  position: relative;
+  width: auto;
+  max-width: 592px;
+}
+
+.liquidity-buffer {
+  @include mix.widget;
+  position: relative;
+  z-index: 10;
+}
+
+.lb-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.lb-chart-area {
+  cursor: pointer;
+}
+
+.lb-nav {
+  display: flex;
+  justify-content: end;
+}
+
+.lb-sheet {
+  position: relative;
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+  border: var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 32px 24px 18px 24px;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background-color: var(--color-second-bg);
+  transition:
+    max-height 0.32s ease,
+    opacity 0.22s ease,
+    transform 0.32s ease;
+
+  &.is-open {
+    max-height: 520px;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(-14px);
+  }
+}
+
+.lb-close {
+  border: none;
+  background: transparent;
+  padding: 4px;
+  line-height: 0;
+  cursor: pointer;
+  color: var(--color-black);
+}
+
+.lb-breakdown {
+  display: grid;
+  row-gap: 8px;
+}
+
+.lb-breakdown__row {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  column-gap: 12px;
+  align-items: baseline;
+}
+
+.lb-trend-plus {
+  color: var(--color-dark-green);
+}
+.lb-trend-minus {
+  color: var(--color-dark-red);
+}
