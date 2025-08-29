@@ -1,5 +1,10 @@
-import { useState } from 'react';
+import React from 'react';
 
+import { BarChart } from '@/shared/ui/bar-chart';
+import { TEST_EMPTY } from '@/shared/ui/bar-chart/fixtures/empty.example';
+import { TEST_MULTI_COLOR } from '@/shared/ui/bar-chart/fixtures/multi.example';
+import { TEST_SINGLE_COLOR } from '@/shared/ui/bar-chart/fixtures/single.example';
+import { TEST_ZEROES } from '@/shared/ui/bar-chart/fixtures/zeroes.example';
 import { CashflowTreemap } from '@/widgets/cashflow-treemap';
 
 const treemap_data = [
@@ -11,30 +16,82 @@ const treemap_data = [
   { id: 'sber-6', title: 'Сбербанк', value: 200_000 },
 ];
 
-export const HomePage = () => {
-  const [count, setCount] = useState(0);
-  return (
-    <>
+export const HomePage: React.FC = () => (
+  <div style={{ padding: 24, display: 'grid', gap: 32 }}>
+    {/* Виджет: Карта денежных потоков */}
+    <CashflowTreemap
+      title="Карта денежных потоков"
+      infoCardType="negative"
+      infoCardText="HHI: 0.35"
+      data={treemap_data}
+      onTileClick={(item) => {
+        console.log('tile clicked', item);
+      }}
+    />
+
+    {/* Демки BarChart */}
+    <section style={{ display: 'grid', gap: 24 }}>
+      <h2 style={{ margin: 0 }}>BarChart – демо</h2>
+
+      {/* Single color */}
       <div>
-        <a href="https://vite.dev" target="_blank" />
-        <a href="https://react.dev" target="_blank" />
+        <h3 style={{ margin: '0 0 12px' }}>Single color (оттенок по высоте)</h3>
+        <BarChart
+          data={TEST_SINGLE_COLOR}
+          colorMode="single"
+          baseColor="#e20714"
+          showLabels
+          showValues
+          maxHeight={220}
+          barWidth={48}
+        />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+
+      {/* Multi color */}
+      <div>
+        <h3 style={{ margin: '0 0 12px' }}>Multi color (с легендой)</h3>
+        <BarChart
+          data={TEST_MULTI_COLOR}
+          colorMode="multi"
+          showLabels
+          showValues
+          maxHeight={260}
+          barWidth={52}
+          legend={[
+            { label: 'Кредит', color: '#d90429' },
+            { label: 'Облигации', color: '#ff8fb3' },
+            { label: 'Лизинг', color: '#2f6df6' },
+          ]}
+        />
       </div>
-      <CashflowTreemap
-        title="Карта денежных потоков"
-        infoCardType="negative"
-        infoCardText="HHI: 0.35"
-        data={treemap_data}
-        onTileClick={(item) => {
-          console.log('tile clicked', item);
-        }}
-      />
-    </>
-  );
-};
+
+      {/* Пустые данные */}
+      <div>
+        <h3 style={{ margin: '0 0 12px' }}>Пустые данные</h3>
+        <BarChart
+          data={TEST_EMPTY}
+          colorMode="single"
+          baseColor="#d90429"
+          showLabels
+          showValues
+          maxHeight={220}
+          barWidth={48}
+        />
+      </div>
+
+      {/* Нули */}
+      <div>
+        <h3 style={{ margin: '0 0 12px' }}>Нули (edge-case)</h3>
+        <BarChart
+          data={TEST_ZEROES}
+          colorMode="single"
+          baseColor="#d90429"
+          showLabels
+          showValues
+          maxHeight={220}
+          barWidth={48}
+        />
+      </div>
+    </section>
+  </div>
+);
