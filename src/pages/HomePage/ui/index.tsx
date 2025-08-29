@@ -1,8 +1,18 @@
 import { useState } from 'react';
 
+import { CashflowTreemap } from '@/widgets/cashflow-treemap';
+
+const treemap_data = [
+  { id: 'sber-1', title: 'Сбербанк', value: 4_200_000 },
+  { id: 'sber-2', title: 'Сбербанк', value: 2_200_000 },
+  { id: 'sber-3', title: 'Сбербанк', value: 800_000 },
+  { id: 'sber-4', title: 'Сбербанк', value: 800_000 },
+  { id: 'sber-5', title: 'Сбербанк', value: 200_000 },
+  { id: 'sber-6', title: 'Сбербанк', value: 200_000 },
+];
+
 export const HomePage = () => {
   const [count, setCount] = useState(0);
-  console.log('ivan');
   return (
     <>
       <div>
@@ -16,7 +26,15 @@ export const HomePage = () => {
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
       </div>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
+      <CashflowTreemap
+        title="Карта денежных потоков"
+        infoCardType="negative"
+        infoCardText="HHI: 0.35"
+        data={treemap_data}
+        onTileClick={(item) => {
+          console.log('tile clicked', item);
+        }}
+      />
     </>
   );
 };

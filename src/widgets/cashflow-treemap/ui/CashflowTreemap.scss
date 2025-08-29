@@ -1,0 +1,20 @@
+@use '@/app/styles/mixins.scss' as mix;
+
+.cashflow-treemap {
+  @include mix.widget;
+  max-width: 530px;
+  &__header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__body {
+    width: auto;
+    height: 230px;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+  }
+}

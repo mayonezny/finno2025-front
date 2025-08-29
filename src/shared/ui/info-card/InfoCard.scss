@@ -1,0 +1,24 @@
+.info-card {
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+
+.positive-card {
+  background-color: var(--color-light-green);
+  color: var(--color-dark-green);
+}
+
+.neutral-card {
+  background-color: var(--color-light-blue);
+  color: var(--color-dark-blue);
+}
+
+.negative-card {
+  background-color: var(--color-light-red);
+  color: var(--color-dark-red);
+}
+
+.danger-card {
+  background-color: var(--color-light-yellow);
+  color: var(--color-dark-yellow);
+}
