@@ -1,11 +1,13 @@
 import React from 'react';
 
+import { TextBubble } from '@/shared/text-bubble';
 import { BarChart } from '@/shared/ui/bar-chart';
 import { TEST_EMPTY } from '@/shared/ui/bar-chart/fixtures/empty.example';
 import { TEST_MULTI_COLOR } from '@/shared/ui/bar-chart/fixtures/multi.example';
 import { TEST_SINGLE_COLOR } from '@/shared/ui/bar-chart/fixtures/single.example';
 import { TEST_ZEROES } from '@/shared/ui/bar-chart/fixtures/zeroes.example';
 import { CashflowTreemap } from '@/widgets/cashflow-treemap';
+import { ChatWidget } from '@/widgets/ChatWidget';
 
 const treemap_data = [
   { id: 'sber-1', title: 'Сбербанк', value: 4_200_000 },
@@ -93,5 +95,6 @@ export const HomePage: React.FC = () => (
         />
       </div>
     </section>
+    <ChatWidget />
   </div>
 );
