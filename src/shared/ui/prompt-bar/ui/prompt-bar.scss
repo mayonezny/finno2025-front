@@ -1,0 +1,16 @@
+.prompt-bar {
+  display: flex;
+  border: var(--border);
+  border-radius: 12px;
+  padding: 12px 8px;
+  width: 100%;
+  margin-bottom: 12px;
+  &__input {
+    font-size: 14px;
+    color: var(--color-black);
+    &::placeholder {
+      color: #889dbc;
+    }
+    height: fit-content;
+  }
+}

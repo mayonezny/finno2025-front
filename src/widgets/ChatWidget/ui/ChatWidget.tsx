@@ -1,8 +1,10 @@
-import { TextBubble, type TextBubbleDto } from '@/shared/text-bubble';
+import { TextBubble, type TextBubbleDto } from '@/shared/ui/text-bubble';
 
 import './chat-widget.scss';
-import '@/shared/text-bubble';
+import '@/shared/ui/text-bubble';
 import { ChatWidgetHeader } from './ChatWidgetHeader';
+
+import { PromptBar } from '@/shared/ui/prompt-bar';
 
 const demoChat: TextBubbleDto[] = [
   { id: 0, message: 'Здарова! Хочу услышать твой прогноз по рентабельности пирожков на 2026 год.' },
@@ -22,7 +24,7 @@ const demoChat: TextBubbleDto[] = [
 ];
 
 export const ChatWidget: React.FC = () => (
-  <>
+  <div className="chat-widget">
     <ChatWidgetHeader />
     <div className="chat-row">
       {demoChat.map((msg) => (
@@ -34,5 +36,6 @@ export const ChatWidget: React.FC = () => (
         />
       ))}
     </div>
-  </>
+    <PromptBar />
+  </div>
 );

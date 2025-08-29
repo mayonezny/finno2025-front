@@ -1,3 +1,9 @@
+.chat-widget {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
 .chat-row {
   display: flex;
   flex-direction: column;
