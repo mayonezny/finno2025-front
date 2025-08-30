@@ -81,21 +81,14 @@ export const BulletListGroup: React.FC<BulletListGroupProps> = ({
 
       {action && (
         <div
-          className={`bullet-list-group__action bullet-list-group__action--${action.align ?? 'end'}`}
+          className={`bullet-list-group__action bullet-list-group__action--${action.align ?? 'center'}`}
         >
-          <div
-            role="button"
-            tabIndex={0}
+          <InfoCard
+            name={action.text}
+            type={action.type ?? 'neutral'}
+            clickable
             onClick={action.onClick}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                action.onClick();
-              }
-            }}
-          >
-            <InfoCard name={action.text} type={action.type ?? 'neutral'} />
-          </div>
+          />
         </div>
       )}
     </div>
