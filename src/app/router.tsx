@@ -1,13 +1,15 @@
 import { createBrowserRouter } from 'react-router-dom';
 
+import { MainLayout } from '@/layouts/main';
+
 import { HomePage } from '../pages/HomePage';
 
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <HomePage />, // общая обёртка с меню
+    element: <MainLayout />, // общая обёртка с меню
     children: [
-      // { index: true, element: <HomePage /> },
+      { index: true, element: <HomePage /> },
       // { path: 'todos', element: <TodosPage /> },
     ],
   },
