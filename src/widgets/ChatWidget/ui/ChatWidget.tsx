@@ -63,7 +63,7 @@ export const ChatWidget: React.FC = () => {
     <div className="chat-widget">
       <ChatWidgetHeader />
       <div className="chat-row" ref={boxRef}>
-        {messages.map((msg) => (
+        {messages.map((msg: Message) => (
           <TextBubble key={msg.id} chatbotAnswer={msg.chatbotAnswer} message={msg.message} />
         ))}
         {isLoaderActive ? <LocalLoader className="loader" /> : null}
