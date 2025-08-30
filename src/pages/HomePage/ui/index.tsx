@@ -1,10 +1,7 @@
 import React from 'react';
 
 import { formatCompactNumber } from '@/shared/lib/format/number';
-import { AnalyticsLineChart } from '@/shared/ui/analytics-line-chart';
-import { BarChart } from '@/shared/ui/bar-chart';
 import { TEST_MULTI_COLOR } from '@/shared/ui/bar-chart/fixtures/multi.example';
-import { TEST_ZEROES } from '@/shared/ui/bar-chart/fixtures/zeroes.example';
 import { type DetailCardData } from '@/shared/ui/detail-card';
 import { CashflowTreemap } from '@/widgets/cashflow-treemap';
 import { ChatWidget } from '@/widgets/ChatWidget';
@@ -12,6 +9,8 @@ import { KpiStats } from '@/widgets/kpi-stats';
 import { LiquidityBuffer } from '@/widgets/liquidity-buffer/ui/LiquidityBuffer';
 import { RepaymentChart } from '@/widgets/repayment-chart/ui/RepaymentChart';
 import { WorkingCapital } from '@/widgets/working-capital';
+
+import './HomePage.scss';
 
 const treemap_data = [
   { id: 'sber-1', title: 'Сбербанк', value: 4_200_000 },
@@ -32,40 +31,8 @@ const weeklyBars = [
   { date: '18 июн.', values: [{ value: 103_000 }] },
 ];
 
-const fact: Record<string, number> = {
-  '12 июн.': 16.9,
-  '12 авг.': 17.8,
-  '12 окт.': 18.4,
-  '12 нояб.': 18.0,
-  '12 дек.': 19.1,
-};
-
-const plan: Record<string, number> = {
-  '12 июн.': 16.7,
-  '12 авг.': 17.0,
-  '12 окт.': 18.9,
-  '12 нояб.': 18.2,
-  '12 дек.': 19.8,
-};
-
 export const HomePage: React.FC = () => (
-  <div
-    style={{
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      width: '100%',
-      padding: '36px 16px',
-      gap: '32px',
-    }}
-  >
-    <AnalyticsLineChart
-      data={fact}
-      extraSeries={{ План: plan }}
-      secondaryTitle="EBITDA"
-      unit="%"
-      showLegend
-    />
+  <div className="HomePage">
     <KpiStats
       layout="vertical"
       title="Ключевые показатели"
@@ -121,43 +88,6 @@ export const HomePage: React.FC = () => (
       data={treemap_data}
       onTileClick={(item) => console.log('tile clicked', item)}
     />
-    <RepaymentChart
-      title="График погашения"
-      WACD={8.5}
-      chart={{
-        data: TEST_MULTI_COLOR,
-        colorMode: 'multi',
-        showLabels: true,
-        showValues: true,
-        maxHeight: 160,
-        segmentGap: 8,
-        legend: [
-          { label: 'Кредит', color: '#d90429' },
-          { label: 'Облигации', color: '#ff8fb3' },
-          { label: 'Лизинг', color: '#2f6df6' },
-        ],
-      }}
-      buildDetail={({ date, segment }) => {
-        const base: DetailCardData = {
-          title: `${date} — ${segment.label ?? 'платёж'}`,
-          amount: segment.value,
-        };
-
-        if (segment.label === 'Кредит') {
-          base.details = 'Ставка: 8.9% (фикс)   Ковенанты: соблюдаются';
-        } else if (segment.label === 'Облигации') {
-          base.details = 'Купон: 10.2%   Дюрация: 1.7 года';
-        } else if (segment.label === 'Лизинг') {
-          base.details = 'Ставка: 7.8%   Остаток: 14.3M';
-        }
-        return base;
-      }}
-      defaultDetail={{
-        title: `${TEST_MULTI_COLOR[0].date} — ближайший платёж`,
-        amount: TEST_MULTI_COLOR[0].values[0].value + TEST_MULTI_COLOR[0].values[1].value,
-        details: `${TEST_MULTI_COLOR[0].values[0].label}: ${formatCompactNumber(TEST_MULTI_COLOR[0].values[0].value)} + ${TEST_MULTI_COLOR[0].values[1].label}: ${formatCompactNumber(TEST_MULTI_COLOR[0].values[1].value)}`,
-      }}
-    />
     <LiquidityBuffer
       title="Буфер ликвидности"
       trend={{ value: 4, unit: 'дня', direction: 'down', showText: true }}
@@ -208,20 +138,47 @@ export const HomePage: React.FC = () => (
         ],
       }}
     />
-    {/* Нули */}
-    <div>
-      <h3 style={{ margin: '0 0 12px' }}>Нули (edge-case)</h3>
-      <BarChart
-        data={TEST_ZEROES}
-        colorMode="single"
-        baseColor="#d90429"
-        showLabels
-        showValues
-        maxHeight={220}
-        barWidth={48}
-      />
-    </div>
-    <ChatWidget />
+
+    <RepaymentChart
+      title="График погашения"
+      WACD={8.5}
+      chart={{
+        data: TEST_MULTI_COLOR,
+        colorMode: 'multi',
+        showLabels: true,
+        showValues: true,
+        maxHeight: 160,
+        segmentGap: 8,
+        legend: [
+          { label: 'Кредит', color: '#d90429' },
+          { label: 'Облигации', color: '#ff8fb3' },
+          { label: 'Лизинг', color: '#2f6df6' },
+        ],
+      }}
+      buildDetail={({ date, segment }) => {
+        const base: DetailCardData = {
+          title: `${date} — ${segment.label ?? 'платёж'}`,
+          amount: segment.value,
+        };
+
+        if (segment.label === 'Кредит') {
+          base.details = 'Ставка: 8.9% (фикс)   Ковенанты: соблюдаются';
+        } else if (segment.label === 'Облигации') {
+          base.details = 'Купон: 10.2%   Дюрация: 1.7 года';
+        } else if (segment.label === 'Лизинг') {
+          base.details = 'Ставка: 7.8%   Остаток: 14.3M';
+        }
+        return base;
+      }}
+      defaultDetail={{
+        title: `${TEST_MULTI_COLOR[0].date} — ближайший платёж`,
+        amount: TEST_MULTI_COLOR[0].values[0].value + TEST_MULTI_COLOR[0].values[1].value,
+        details: `${TEST_MULTI_COLOR[0].values[0].label}: ${formatCompactNumber(TEST_MULTI_COLOR[0].values[0].value)} + ${TEST_MULTI_COLOR[0].values[1].label}: ${formatCompactNumber(TEST_MULTI_COLOR[0].values[1].value)}`,
+      }}
+    />
+
+    {/* <ChatWidget /> */}
+
     <WorkingCapital
       data={{
         dso: { value: 35, trendValue: 2, trendDirection: 'up' },
