@@ -1,0 +1,24 @@
+.prompt-bar {
+  display: flex;
+  border: var(--border);
+  border-radius: 12px;
+  padding: 8px;
+  width: 100%;
+  margin-bottom: 12px;
+  &__input {
+    font-size: 14px;
+    color: var(--color-black);
+    &::placeholder {
+      color: #889dbc;
+    }
+    height: fit-content;
+  }
+}
+.submit-button {
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  &__disabled {
+    opacity: 0.3;
+  }
+}
