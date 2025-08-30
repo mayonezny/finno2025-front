@@ -7,6 +7,7 @@ import { TEST_ZEROES } from '@/shared/ui/bar-chart/fixtures/zeroes.example';
 import { type DetailCardData } from '@/shared/ui/detail-card';
 import { CashflowTreemap } from '@/widgets/cashflow-treemap';
 import { ChatWidget } from '@/widgets/ChatWidget';
+import { KpiStats } from '@/widgets/kpi-stats';
 import { LiquidityBuffer } from '@/widgets/liquidity-buffer/ui/LiquidityBuffer';
 import { RepaymentChart } from '@/widgets/repayment-chart/ui/RepaymentChart';
 import { WorkingCapital } from '@/widgets/working-capital';
@@ -41,8 +42,10 @@ export const HomePage: React.FC = () => (
       gap: '32px',
     }}
   >
-    {/* <KpiStats
-      layout="horizontal"
+    <KpiStats
+      layout="vertical"
+      title="Ключевые показатели"
+      collapsible
       metrics={[
         {
           title: 'Свободные деньги',
@@ -87,7 +90,7 @@ export const HomePage: React.FC = () => (
           trend: { value: 0.5, unit: 'x', direction: 'down' },
         },
       ]}
-    /> */}
+    />
 
     <CashflowTreemap
       title="Карта денежных потоков"
