@@ -33,6 +33,29 @@ export const KpiStats: React.FC<KpiStatsProps> = ({
       {(title || canCollapse) && (
         <div className="kpi-stats__header">
           {title && <div className="h2">{title}</div>}
+          <div className="kpi-stats__body" hidden={canCollapse && collapsed}>
+            {metrics.map((m, idx) => (
+              <KpiCard
+                key={idx}
+                title={m.title}
+                value={m.value}
+                unit={m.unit}
+                fractionDigits={fractionDigits}
+                colorRule={m.colorRule ?? (() => 'blue')}
+                trendTag={
+                  m.trend && {
+                    value: m.trend.value,
+                    unit: m.trend.unit ?? '',
+                    direction: m.trend.direction,
+                    showText: true,
+                  }
+                }
+                bordered={bordered}
+                background={background}
+                padding={padding}
+              />
+            ))}
+          </div>
           {canCollapse && (
             <button
               type="button"
@@ -46,30 +69,6 @@ export const KpiStats: React.FC<KpiStatsProps> = ({
           )}
         </div>
       )}
-
-      <div className="kpi-stats__body" hidden={canCollapse && collapsed}>
-        {metrics.map((m, idx) => (
-          <KpiCard
-            key={idx}
-            title={m.title}
-            value={m.value}
-            unit={m.unit}
-            fractionDigits={fractionDigits}
-            colorRule={m.colorRule ?? (() => 'blue')}
-            trendTag={
-              m.trend && {
-                value: m.trend.value,
-                unit: m.trend.unit ?? '',
-                direction: m.trend.direction,
-                showText: true,
-              }
-            }
-            bordered={bordered}
-            background={background}
-            padding={padding}
-          />
-        ))}
-      </div>
     </div>
   );
 };
