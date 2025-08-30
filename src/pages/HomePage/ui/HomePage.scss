@@ -1,8 +1,11 @@
 .HomePage {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  max-width: 1416px;
+  width: 100%;
+  flex-wrap: wrap;
   padding: 36px 16px;
   gap: 32px;
+}
+.HomePage > div {
+  width: 100%;
 }
