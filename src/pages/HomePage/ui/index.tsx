@@ -1,14 +1,14 @@
 import React from 'react';
 
 import { formatCompactNumber } from '@/shared/lib/format/number';
+import { BarChart } from '@/shared/ui/bar-chart';
 import { TEST_MULTI_COLOR } from '@/shared/ui/bar-chart/fixtures/multi.example';
 import { TEST_SINGLE_COLOR } from '@/shared/ui/bar-chart/fixtures/single.example';
 import { TEST_ZEROES } from '@/shared/ui/bar-chart/fixtures/zeroes.example';
+import { DetailCard, type DetailCardData } from '@/shared/ui/detail-card';
 import { TextBubble } from '@/shared/ui/text-bubble';
 import { CashflowTreemap } from '@/widgets/cashflow-treemap';
 import { ChatWidget } from '@/widgets/ChatWidget';
-import { DetailCard, type DetailCardData } from '@/shared/ui/detail-card';
-import { CashflowTreemap } from '@/widgets/cashflow-treemap';
 import { KpiStats } from '@/widgets/kpi-stats';
 import { LiquidityBuffer } from '@/widgets/liquidity-buffer/ui/LiquidityBuffer';
 import { RepaymentChart } from '@/widgets/repayment-chart/ui/RepaymentChart';
@@ -187,20 +187,20 @@ export const HomePage: React.FC = () => (
       }}
     />
 
-      {/* Нули */}
-      <div>
-        <h3 style={{ margin: '0 0 12px' }}>Нули (edge-case)</h3>
-        <BarChart
-          data={TEST_ZEROES}
-          colorMode="single"
-          baseColor="#d90429"
-          showLabels
-          showValues
-          maxHeight={220}
-          barWidth={48}
-        />
-      </div>
-    </section>
+    {/* Нули */}
+    <div>
+      <h3 style={{ margin: '0 0 12px' }}>Нули (edge-case)</h3>
+      <BarChart
+        data={TEST_ZEROES}
+        colorMode="single"
+        baseColor="#d90429"
+        showLabels
+        showValues
+        maxHeight={220}
+        barWidth={48}
+      />
+    </div>
+
     <ChatWidget />
     <WorkingCapital
       data={{
