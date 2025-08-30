@@ -2,7 +2,7 @@
   display: flex;
   border: var(--border);
   border-radius: 12px;
-  padding: 12px 8px;
+  padding: 8px;
   width: 100%;
   margin-bottom: 12px;
   &__input {
@@ -12,5 +12,13 @@
       color: #889dbc;
     }
     height: fit-content;
+  }
+}
+.submit-button {
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  &__disabled {
+    opacity: 0.3;
   }
 }

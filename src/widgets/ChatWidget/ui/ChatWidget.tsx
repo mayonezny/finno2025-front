@@ -1,15 +1,24 @@
+import type { Message } from '@/redux/store/messages/types';
 import { LocalLoader } from '@/shared/LocalLoader';
 import { PromptBar } from '@/shared/ui/prompt-bar';
-import { TextBubble, type TextBubbleDto } from '@/shared/ui/text-bubble';
+import { TextBubble } from '@/shared/ui/text-bubble';
 
 import './chat-widget.scss';
-import '@/shared/ui/text-bubble';
 import { ChatWidgetHeader } from './ChatWidgetHeader';
+import { useChat } from '../api';
 
-import { useState } from 'react';
+import { useAppSelector } from '@/redux/hooks';
+import { InfoCard } from '@/shared/ui/info-card';
 
-const demoChat: TextBubbleDto[] = [
-  { id: 0, message: 'Здарова! Хочу услышать твой прогноз по рентабельности пирожков на 2026 год.' },
+import { useEffect, useRef } from 'react';
+import { animate } from 'framer-motion';
+
+const demoChat: Message[] = [
+  {
+    id: 0,
+    message: 'Здарова! Хочу услышать твой прогноз по рентабельности пирожков на 2026 год.',
+    chatbotAnswer: false,
+  },
   //   {
   //     id: 1,
   //     chatbotAnswer: true,
@@ -25,21 +34,43 @@ const demoChat: TextBubbleDto[] = [
   //   },
 ];
 
-export const ChatWidget: React.FC = () => (
-  <div className="chat-widget">
-    <ChatWidgetHeader />
-    <div className="chat-row">
-      {demoChat.map((msg) => (
-        <TextBubble
-          id={msg.id}
-          key={msg.id}
-          chatbotAnswer={msg.chatbotAnswer}
-          message={msg.message}
-        />
-      ))}
-      <LocalLoader className="loader" />
-    </div>
+export const ChatWidget: React.FC = () => {
+  const { isLoaderActive } = useAppSelector((state) => state.loaderReducer);
+  const { messages, info } = useAppSelector((state) => state.messagesReducer);
+  const boxRef = useRef<HTMLDivElement>(null);
+  const scrollToBottom = () => {
+    if (boxRef.current) {
+      scrollWithFramer(boxRef.current);
+    }
+  };
 
-    <PromptBar />
-  </div>
-);
+  const scrollWithFramer = (el: HTMLElement, duration = 2) => {
+    animate(el.scrollTop, el.scrollHeight, {
+      duration, // сек
+      ease: 'easeOut',
+      onUpdate: (v) => {
+        el.scrollTop = v;
+      },
+    });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [isLoaderActive, messages]);
+
+  console.log(isLoaderActive);
+  return (
+    <div className="chat-widget">
+      <ChatWidgetHeader />
+      <div className="chat-row" ref={boxRef}>
+        {messages.map((msg) => (
+          <TextBubble key={msg.id} chatbotAnswer={msg.chatbotAnswer} message={msg.message} />
+        ))}
+        {isLoaderActive ? <LocalLoader className="loader" /> : null}
+        {info && <InfoCard name={'Ошибка соединения'} type="negative" />}
+      </div>
+
+      <PromptBar />
+    </div>
+  );
+};
