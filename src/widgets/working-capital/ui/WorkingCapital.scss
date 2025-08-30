@@ -1,19 +1,20 @@
 @use '@/app/styles/mixins.scss' as mix;
 
-.cashflow-treemap {
+.working-capital {
   @include mix.widget;
-  &__header {
+
+  .wc__row {
     display: flex;
+    align-items: center;
     justify-content: space-between;
   }
 
-  &__body {
-    width: auto;
-    height: 230px;
-  }
-
-  &__footer {
+  .wc__wrapper {
     display: flex;
-    justify-content: space-between;
+    gap: 12px;
+
+    .kpi-card {
+      width: 100%;
+    }
   }
 }

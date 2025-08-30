@@ -1,0 +1,18 @@
+@use '@/app/styles/mixins.scss' as mix;
+
+.kpi-stats {
+  @include mix.widget;
+  max-width: 1216px;
+  width: 100%;
+}
+
+.kpi-stats__horizontal {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.kpi-stats__vertical {
+  display: flex;
+  flex-direction: column;
+}

@@ -5,7 +5,10 @@
   padding: 18px 24px;
   border: var(--border);
   border-radius: var(--border-radius);
-  width: auto;
+  width: 100%;
+  max-width: 592px;
+  height: fit-content;
+  background-color: #fff;
 
   @media (max-width: 768px) {
     padding: 12px 18px;

@@ -32,5 +32,12 @@ export interface BarChartProps {
   barWidth?: number;
 
   segmentGap?: number;
-  onSegmentClick?: (p) => void;
+  onSegmentClick?: (args: BarSegmentClick) => void;
 }
+
+export type BarSegmentClick = {
+  barIndex: number;
+  date: string;
+  segment: { label?: string; value: number; color?: string };
+  total: number;
+};
