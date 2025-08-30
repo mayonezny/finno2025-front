@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { formatCompactNumber } from '@/shared/lib/format/number';
+import { AnalyticsLineChart } from '@/shared/ui/analytics-line-chart';
 import { BarChart } from '@/shared/ui/bar-chart';
 import { TEST_MULTI_COLOR } from '@/shared/ui/bar-chart/fixtures/multi.example';
 import { TEST_ZEROES } from '@/shared/ui/bar-chart/fixtures/zeroes.example';
@@ -31,6 +32,22 @@ const weeklyBars = [
   { date: '18 июн.', values: [{ value: 103_000 }] },
 ];
 
+const fact: Record<string, number> = {
+  '12 июн.': 16.9,
+  '12 авг.': 17.8,
+  '12 окт.': 18.4,
+  '12 нояб.': 18.0,
+  '12 дек.': 19.1,
+};
+
+const plan: Record<string, number> = {
+  '12 июн.': 16.7,
+  '12 авг.': 17.0,
+  '12 окт.': 18.9,
+  '12 нояб.': 18.2,
+  '12 дек.': 19.8,
+};
+
 export const HomePage: React.FC = () => (
   <div
     style={{
@@ -42,6 +59,13 @@ export const HomePage: React.FC = () => (
       gap: '32px',
     }}
   >
+    <AnalyticsLineChart
+      data={fact}
+      extraSeries={{ План: plan }}
+      secondaryTitle="EBITDA"
+      unit="%"
+      showLegend
+    />
     <KpiStats
       layout="vertical"
       title="Ключевые показатели"
@@ -91,14 +115,12 @@ export const HomePage: React.FC = () => (
         },
       ]}
     />
-
     <CashflowTreemap
       title="Карта денежных потоков"
       HHI={0.29}
       data={treemap_data}
       onTileClick={(item) => console.log('tile clicked', item)}
     />
-
     <RepaymentChart
       title="График погашения"
       WACD={8.5}
@@ -186,7 +208,6 @@ export const HomePage: React.FC = () => (
         ],
       }}
     />
-
     {/* Нули */}
     <div>
       <h3 style={{ margin: '0 0 12px' }}>Нули (edge-case)</h3>
@@ -200,7 +221,6 @@ export const HomePage: React.FC = () => (
         barWidth={48}
       />
     </div>
-
     <ChatWidget />
     <WorkingCapital
       data={{
