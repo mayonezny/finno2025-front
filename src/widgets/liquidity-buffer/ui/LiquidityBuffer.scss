@@ -1,9 +1,14 @@
 @use '@/app/styles/mixins.scss' as mix;
 
 .liquidity-buffer-wrap {
-  position: relative;
-  width: auto;
-  max-width: 592px;
+  display: contents;
+}
+
+@supports not (display: contents) {
+  .liquidity-buffer-wrap {
+    width: 100%;
+    max-width: none;
+  }
 }
 
 .liquidity-buffer {
@@ -51,12 +56,16 @@
     opacity 0.22s ease,
     transform 0.32s ease;
 
+  max-height: 0;
+  will-change: transform, opacity, max-height;
   &.is-open {
     position: relative;
     max-height: 520px;
     opacity: 1;
     pointer-events: auto;
-    transform: translateY(-14px);
+    transform: translateY(-48px);
+    width: 100%;
+    max-width: 592px;
   }
 }
 
