@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 import { AutoTextarea } from '@/shared/AutoTextarea';
-
 import './prompt-bar.scss';
 import { useChat } from '@/widgets/ChatWidget/api';
 

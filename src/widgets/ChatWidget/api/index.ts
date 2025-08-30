@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 import { addMessage } from '@/redux/store/messages';
 import { askChatbot } from '@/redux/store/messages/messagesThunks';

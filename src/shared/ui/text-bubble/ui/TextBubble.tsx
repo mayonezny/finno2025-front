@@ -1,5 +1,4 @@
 import React from 'react';
-
 import './text-bubble.scss';
 import ReactMarkdown, { type Components } from 'react-markdown';
 import remarkGfm from 'remark-gfm';
