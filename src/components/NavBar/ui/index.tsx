@@ -204,4 +204,5 @@ export const MobileNavBar: React.FC = () => {
       </AnimatePresence>
     </>
   );
+  //
 };

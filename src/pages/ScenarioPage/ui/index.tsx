@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 import { fetchScenario } from '@/entities/scenario/scenario.api';
@@ -18,6 +19,8 @@ import { WidgetCard } from '@/widgets/widget-card';
 
 import './scenario-page.scss';
 import { useNavigate } from 'react-router-dom';
+import './scenario-page.scss';
+import { ButtonSelector, type ButtonSelectorOption } from '@/shared/ui/button-selector';
 
 const SCENARIO_OPTIONS: ButtonSelectorOption[] = [
   { value: 'pess', label: 'Пессимистичный' },
