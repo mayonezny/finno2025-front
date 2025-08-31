@@ -14,7 +14,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 8px;
   gap: 16px;
 }
 
@@ -45,8 +44,7 @@
 }
 
 .kpi-stats__body {
-  padding: 8px 14px 14px;
-
+  padding: 8px 0;
   overflow: hidden;
   max-height: 9999px;
   opacity: 1;
@@ -72,6 +70,9 @@
 }
 
 .kpi-stats.is-collapsible.is-collapsed {
+  .kpi-stats__header {
+    gap: 8px;
+  }
   .kpi-stats__body {
     max-height: 0;
     opacity: 0;

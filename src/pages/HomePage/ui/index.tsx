@@ -38,7 +38,7 @@ export const HomePage: React.FC = () => {
     <div className="HomePage">
       <KpiStats
         layout={isMobile ? 'vertical' : 'horizontal'}
-        title="Ключевые показатели"
+        {...(isMobile && { title: 'ключевые показатели' })}
         collapsible
         metrics={[
           {

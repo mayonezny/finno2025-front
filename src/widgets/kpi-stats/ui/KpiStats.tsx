@@ -30,45 +30,43 @@ export const KpiStats: React.FC<KpiStatsProps> = ({
         canCollapse && collapsed ? 'is-collapsed' : '',
       ].join(' ')}
     >
-      {(title || canCollapse) && (
-        <div className="kpi-stats__header">
-          {title && <div className="h2">{title}</div>}
-          <div className="kpi-stats__body" hidden={canCollapse && collapsed}>
-            {metrics.map((m, idx) => (
-              <KpiCard
-                key={idx}
-                title={m.title}
-                value={m.value}
-                unit={m.unit}
-                fractionDigits={fractionDigits}
-                colorRule={m.colorRule ?? (() => 'blue')}
-                trendTag={
-                  m.trend && {
-                    value: m.trend.value,
-                    unit: m.trend.unit ?? '',
-                    direction: m.trend.direction,
-                    showText: true,
-                  }
+      <div className="kpi-stats__header">
+        {title && <div className="h2">{title}</div>}
+        <div className="kpi-stats__body" hidden={canCollapse && collapsed}>
+          {metrics.map((m, idx) => (
+            <KpiCard
+              key={idx}
+              title={m.title}
+              value={m.value}
+              unit={m.unit}
+              fractionDigits={fractionDigits}
+              colorRule={m.colorRule ?? (() => 'blue')}
+              trendTag={
+                m.trend && {
+                  value: m.trend.value,
+                  unit: m.trend.unit ?? '',
+                  direction: m.trend.direction,
+                  showText: true,
                 }
-                bordered={bordered}
-                background={background}
-                padding={padding}
-              />
-            ))}
-          </div>
-          {canCollapse && (
-            <button
-              type="button"
-              className="kpi-stats__toggle"
-              onClick={toggle}
-              aria-expanded={!collapsed}
-            >
-              {collapsed ? 'Развернуть' : 'Свернуть'}
-              <ChevronDown className="chev" aria-hidden="true" />
-            </button>
-          )}
+              }
+              bordered={bordered}
+              background={background}
+              padding={padding}
+            />
+          ))}
         </div>
-      )}
+        {canCollapse && (
+          <button
+            type="button"
+            className="kpi-stats__toggle"
+            onClick={toggle}
+            aria-expanded={!collapsed}
+          >
+            {collapsed ? 'Развернуть' : 'Свернуть'}
+            <ChevronDown className="chev" aria-hidden="true" />
+          </button>
+        )}
+      </div>
     </div>
   );
 };

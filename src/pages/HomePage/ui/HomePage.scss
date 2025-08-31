@@ -7,11 +7,11 @@
   gap: 32px;
 }
 .HomePage > :first-child {
-  grid-column: 1 / -1; /* растянуть первый элемент на всю ширину */
+  grid-column: 1 / -1;
 }
 .HomePage > * {
   justify-self: stretch;
-  max-width: 100%; /* растянуть по горизонтали */
+  max-width: 100%;
 }
 @media (max-width: 1000px) {
   .HomePage {
