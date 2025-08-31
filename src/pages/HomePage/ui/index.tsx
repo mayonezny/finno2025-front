@@ -179,8 +179,6 @@ export const HomePage: React.FC = () => {
         }}
       />
 
-      {/* <ChatWidget /> */}
-
       <WorkingCapital
         data={{
           dso: { value: 35, trendValue: 2, trendDirection: 'up' },

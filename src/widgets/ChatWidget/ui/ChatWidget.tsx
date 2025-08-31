@@ -61,7 +61,7 @@ export const ChatWidget: React.FC = () => {
 
   return (
     <div className="chat-widget">
-      {isDesktop && <h2 className="desktop-header">ИИ-ассистент</h2>}
+      {isDesktop && <div className="h2 desktop-header">ИИ-ассистент</div>}
       <div className="chat-row" ref={boxRef}>
         {messages.map((msg: Message) => (
           <TextBubble key={msg.id} chatbotAnswer={msg.chatbotAnswer} message={msg.message} />

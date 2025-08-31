@@ -9,7 +9,7 @@ import {
 } from 'lucide-react';
 import React, { useState, useMemo, useEffect } from 'react';
 import './nav-bar.scss';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import { useMediaQuery } from '@/utils/hooks/useMediaQuery';
 
@@ -127,7 +127,9 @@ export const MobileNavBar: React.FC = () => {
         {location.pathname === '/ai' ? (
           <h3>ИИ-ассистент</h3>
         ) : (
-          <button className="ai-chat-button">Чат с ИИ-ассистентом</button>
+          <Link className="ai-chat-button" to={'/ai'}>
+            Чат с ИИ-ассистентом
+          </Link>
         )}
         <Bell className="icon" />
       </div>
