@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { InfoCard, type infoCardType } from '@/shared/ui/info-card';
+import { InfoCard } from '@/shared/ui/info-card';
 import { Treemap, type TreemapItem } from '@/shared/ui/treemap';
 import './CashflowTreemap.scss';
 
