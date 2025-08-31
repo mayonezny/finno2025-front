@@ -1,0 +1,41 @@
+@use '@/app/styles/mixins.scss' as mix;
+
+.bullet-list-group {
+  @include mix.widget;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+
+    &--two {
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 24px;
+      row-gap: 24px;
+      align-items: start;
+      padding: 0 32px;
+    }
+  }
+
+  &__action {
+    display: flex;
+
+    &--start {
+      justify-content: flex-start;
+    }
+    &--center {
+      justify-content: center;
+    }
+    &--end {
+      justify-content: flex-end;
+    }
+  }
+
+  @media (max-width: 768px) {
+    &__grid,
+    &__grid--two {
+      grid-template-columns: 1fr;
+      padding: 0;
+    }
+  }
+}

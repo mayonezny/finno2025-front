@@ -1,0 +1,78 @@
+.analytics-line-chart {
+  width: 100%;
+  position: relative;
+  overflow: visible !important;
+
+  &__svg {
+    display: block;
+  }
+
+  &__line {
+    stroke-width: 3;
+    vector-effect: non-scaling-stroke;
+  }
+  &__line--extra {
+    stroke-width: 2;
+    opacity: 0.8;
+  }
+  &__dot {
+    r: 4;
+  }
+
+  &__grid {
+    stroke: var(--color-border, #e5e7eb);
+    stroke-dasharray: 2 4;
+    vector-effect: non-scaling-stroke;
+  }
+
+  &__xlabel,
+  &__ylabel {
+    fill: var(--color-muted, #718096);
+    dominant-baseline: middle;
+  }
+  &__ylabel {
+    text-anchor: start;
+  }
+
+  &__cursor {
+    stroke: var(--color-border-strong, #cbd5e1);
+    stroke-width: 1;
+    vector-effect: non-scaling-stroke;
+  }
+
+  &__tooltip-card {
+    pointer-events: none;
+    background: var(--color-second-bg, #fff);
+    color: var(--color-text, #111);
+    border: var(--border);
+    border-radius: var(--border-radius);
+    padding: 10px 12px;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+
+    display: inline-block;
+    width: max-content;
+    height: max-content;
+    max-width: 220px;
+    max-height: 120px;
+  }
+
+  .legend {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .legend-color {
+    width: 14px;
+    height: 14px;
+    border-radius: 4px;
+    display: inline-block;
+  }
+}

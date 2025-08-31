@@ -1,0 +1,40 @@
+.bullet-list {
+  --bullet-size: 8px;
+  --bullet-color: var(--color-dark-red);
+
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &__item {
+    display: grid;
+    grid-template-columns: var(--bullet-size) 1fr;
+    align-items: start;
+    column-gap: 8px;
+  }
+
+  &__title {
+    margin-bottom: 12px;
+  }
+
+  &__marker {
+    width: var(--bullet-size);
+    height: var(--bullet-size);
+    border-radius: 50%;
+    background: var(--bullet-color);
+    margin-top: 0.45em;
+  }
+
+  &--s {
+    --bullet-size: 6px;
+  }
+  &--m {
+    --bullet-size: 8px;
+  }
+  &--l {
+    --bullet-size: 10px;
+  }
+}
