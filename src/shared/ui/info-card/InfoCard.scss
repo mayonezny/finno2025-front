@@ -1,0 +1,49 @@
+.info-card {
+  padding: 4px 8px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.info-card--clickable {
+  cursor: pointer;
+  transition:
+    transform 120ms ease,
+    box-shadow 120ms ease,
+    filter 120ms ease,
+    background-color 120ms ease;
+
+  &:hover {
+    filter: saturate(1.04);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  }
+  &:active {
+    transform: translateY(1px) scale(0.99);
+    filter: brightness(0.98);
+  }
+  &:focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 2px #fff,
+      0 0 0 4px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.positive-card {
+  background-color: var(--color-light-green);
+  color: var(--color-dark-green);
+}
+.neutral-card {
+  background-color: var(--color-light-blue);
+  color: var(--color-dark-blue);
+}
+.negative-card {
+  background-color: var(--color-light-red);
+  color: var(--color-dark-red);
+}
+.danger-card {
+  background-color: var(--color-light-yellow);
+  color: var(--color-dark-yellow);
+}

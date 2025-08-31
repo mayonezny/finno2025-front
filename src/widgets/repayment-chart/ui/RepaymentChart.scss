@@ -1,0 +1,11 @@
+@use '@/app/styles/mixins.scss' as mix;
+
+.repayment-chart {
+  @include mix.widget;
+
+  .rc-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

@@ -1,0 +1,26 @@
+.detail-card {
+  border: var(--border);
+  border-radius: var(--border-radius);
+  background: var(--color-second-bg);
+  padding: 12px 16px;
+  box-sizing: content-box;
+
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 112px;
+  opacity: 1;
+}
+
+.detail-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.detail-card__close {
+  border: 0;
+  background: transparent;
+  line-height: 0;
+  cursor: pointer;
+}

@@ -1,0 +1,16 @@
+.nav-link-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+  color: var(--color-contrast-blue);
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  .nav-link-button__icon {
+    color: inherit;
+    flex-shrink: 0;
+  }
+}

@@ -1,0 +1,13 @@
+.box {
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+.textarea-input {
+  border: none;
+  outline: none;
+  overflow: hidden;
+  resize: none;
+  width: 100%;
+}

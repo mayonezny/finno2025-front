@@ -3,6 +3,6 @@ import { API_URL } from './constants';
 
 export const api = axios.create({
   baseURL: API_URL,
-  withCredentials: true,
-  timeout: 15000
+  withCredentials: false, //если появятся креды это нужно будет переключить
+  timeout: 30000,
 });

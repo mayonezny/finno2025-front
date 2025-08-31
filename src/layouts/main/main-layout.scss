@@ -1,0 +1,14 @@
+.MainLayout {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  width: 100%;
+  height: 100vh;
+}
+@media (max-width: 1000px) {
+  .MainLayout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 91vh;
+  }
+}
