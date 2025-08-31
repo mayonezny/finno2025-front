@@ -14,18 +14,23 @@
       background-color 0.16s ease;
 
     &::placeholder {
-      color: var(--color-light-blue);
+      color: var(--color-caption);
     }
 
     &:focus {
-      border-color: var(--color-contrast-blue);
+      border-color: var(--color-contrast-red);
       background: var(--color-second-bg);
     }
 
     &:disabled {
-      border-color: var(--color-gray);
-      background: var(--color-gray);
-      color: var(--color-disabled-text, #9aa0a6);
+      border-color: var(--color-grey);
+      background: var(--color-grey);
+      color: var(--color-gray);
+
+      &::placeholder {
+        color: var(--color-gray);
+      }
+
       cursor: not-allowed;
     }
 

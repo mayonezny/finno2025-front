@@ -9,8 +9,9 @@ export type Payment = {
   status: string; // тут подставишь свой «бейдж» позже
 };
 
+//
 // 10 строк для примера (группы по дате 20.01.2025)
-export const payments: Payment[] = Array.from({ length: 10 }).map((_, i) => ({
+export const payments: Payment[] = Array.from({ length: 20 }).map((_, i) => ({
   date: '20.01.2025',
   description: 'Выплата заработной платы сотрудникам',
   company: 'ООО "Основная компания"',

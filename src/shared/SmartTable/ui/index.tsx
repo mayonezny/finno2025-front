@@ -85,6 +85,7 @@ export function SmartTable<T>({
                     rowSpan={rowSpan}
                     colSpan={colSpan}
                     className={`${col.className ?? ''} ${col.align ? `is-${col.align}` : ''}`}
+                    data-label={col.header}
                   >
                     {content}
                   </td>

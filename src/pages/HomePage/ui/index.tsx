@@ -37,7 +37,7 @@ export const HomePage: React.FC = () => {
     <div className="HomePage">
       <KpiStats
         layout={isMobile ? 'vertical' : 'horizontal'}
-        {...(isMobile && { title: 'ключевые показатели' })}
+        {...(isMobile && { title: 'Ключевые показатели' })}
         collapsible
         metrics={[
           {
@@ -100,6 +100,9 @@ export const HomePage: React.FC = () => {
           unit: 'дней',
           criticalThreshold: 20,
           goal: 30,
+          height: 20,
+          radius: 20,
+          trackColor: '#fff',
         }}
         chart={{
           data: weeklyBars,

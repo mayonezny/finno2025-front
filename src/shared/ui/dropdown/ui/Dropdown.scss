@@ -1,0 +1,111 @@
+.dropdown {
+  position: relative;
+  width: 100%;
+  outline: none;
+
+  .lucide {
+    color: var(--color-contrast-red);
+  }
+  .dropdown__control {
+    height: 40px;
+  }
+
+  &[data-disabled='true'] {
+    pointer-events: none;
+  }
+
+  &__control {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border: var(--border);
+    border-radius: var(--border-radius);
+    background: var(--color-second-bg);
+    padding: 0 16px;
+    cursor: pointer;
+    outline: none;
+    transition:
+      border-color 0.16s ease,
+      background-color 0.16s ease,
+      box-shadow 0.16s ease;
+
+    &:focus-visible {
+      box-shadow: 0 0 0 2px color-mix(in oklab, var(--color-contrast-red) 40%, transparent);
+    }
+
+    &:disabled {
+      border-color: var(--color-gray);
+      background: var(--color-grey);
+      color: var(--color-caption);
+      cursor: not-allowed;
+    }
+  }
+
+  &__value {
+    &--placeholder {
+      color: var(--color-caption);
+    }
+  }
+
+  &[data-open='true'] .dropdown__control {
+    border-color: var(--color-contrast-red);
+    background: var(--color-second-bg);
+  }
+
+  &__list {
+    position: absolute;
+    z-index: 20;
+    left: 0;
+    right: 0;
+    padding: 0;
+    margin-top: 4px;
+    background: var(--color-second-bg);
+    border: var(--border);
+    border-radius: var(--border-radius);
+    overflow: auto;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+  }
+
+  &__item {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    user-select: none;
+    cursor: pointer;
+
+    & + & {
+      border-top: 1px solid color-mix(in oklab, var(--color-border, #dcdcdc) 100%, transparent);
+    }
+
+    &:hover {
+      background: color-mix(in oklab, var(--color-contrast-red) 6%, transparent);
+    }
+
+    &.is-active {
+      background: color-mix(in oklab, var(--color-contrast-red) 10%, transparent);
+    }
+
+    &.is-selected {
+      font-weight: 500;
+    }
+
+    &.is-disabled {
+      color: var(--color-gray);
+      cursor: not-allowed;
+      background: transparent;
+    }
+  }
+
+  &[data-disabled='true'] .dropdown__control {
+    border-color: var(--color-grey);
+    background: var(--color-grey);
+    color: var(--color-gray);
+
+    .lucide {
+      color: var(--color-gray);
+    }
+  }
+}

@@ -1,7 +1,21 @@
-import { SmartTable, type Column, type SmartRow } from '@/shared/SmartTable';
+import { SmartTable, type Column } from '@/shared/SmartTable';
+import { InfoCard } from '@/shared/ui/info-card';
 import { TextWithHint } from '@/shared/ui/textbox-with-hint';
-import { type Payment, groupByDateToRows, payments } from '@/utils/demo/payments';
+import { type Payment, payments } from '@/utils/demo/payments';
 import './payments-page.scss';
+
+const returnColor = (text: string) => {
+  switch (text) {
+    case 'Выполнено':
+      return 'positive';
+    case 'В ожидании':
+      return 'danger';
+    case 'Ошибка':
+      return 'negative';
+    default:
+      return 'neutral';
+  }
+};
 
 export const PaymentsPage: React.FC = () => {
   const columns: Column<Payment>[] = [
@@ -13,16 +27,26 @@ export const PaymentsPage: React.FC = () => {
         <TextWithHint top={p.description} bottomLeft={p.company} bottomRight={p.bank} sep="•" />
       ),
     },
-    { key: 'category', header: 'Категория', width: '140px' },
+    {
+      key: 'category',
+      header: 'Категория',
+      render: (p) => <InfoCard name={p.category} />,
+      width: '140px',
+    },
     { key: 'amount', header: 'Сумма, ₽', align: 'right', width: '140px' },
     { key: 'receiver', header: 'Получатель', width: '160px' },
-    { key: 'status', header: 'Статус', width: '140px' }, // сюда потом вставишь свой бейдж
+    {
+      key: 'status',
+      header: 'Статус',
+      render: (p) => <InfoCard name={p.status} type={returnColor(p.status)} />,
+      width: '160px',
+    }, // сюда потом вставишь свой бейдж
   ];
 
-  const rows: SmartRow<Payment>[] = groupByDateToRows(payments);
+  const rows = payments.map((p) => ({ data: p }));
   return (
-    <div>
+    <>
       <SmartTable columns={columns} rows={rows} zebra stickyHeader className="payments-table" />
-    </div>
+    </>
   );
 };
