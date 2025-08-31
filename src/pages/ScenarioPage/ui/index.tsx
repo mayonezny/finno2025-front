@@ -1,9 +1,6 @@
-import { Dropdown } from '@/shared/ui/dropdown';
-import type { DropdownItem } from '@/shared/ui/dropdown/model/types';
-import { Input } from '@/shared/ui/input';
 import './scenario-page.scss';
-import { SearchBar } from '@/shared/ui/search-bar';
 import { ButtonSelector, type ButtonSelectorOption } from '@/shared/ui/button-selector';
+//\
 
 const options: ButtonSelectorOption[] = [
   { value: 'pess', label: 'Пессимистичный' },
