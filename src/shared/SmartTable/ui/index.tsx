@@ -50,7 +50,6 @@ export function SmartTable<T>({
                 key={String(col.key)}
                 className={`${col.className ?? ''} ${col.align ? `is-${col.align}` : ''}`}
                 style={col.width ? ({ width: col.width } as React.CSSProperties) : undefined}
-                data-label={col.header}
               >
                 {col.header}
               </th>
@@ -86,6 +85,7 @@ export function SmartTable<T>({
                     rowSpan={rowSpan}
                     colSpan={colSpan}
                     className={`${col.className ?? ''} ${col.align ? `is-${col.align}` : ''}`}
+                    data-label={col.header}
                   >
                     {content}
                   </td>
