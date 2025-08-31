@@ -13,9 +13,9 @@
 
 .liquidity-buffer {
   @include mix.widget;
+  max-width: 100%;
   position: relative;
   z-index: 10;
-  width: 100%;
 }
 
 .lb-row {
@@ -94,4 +94,10 @@
 }
 .lb-trend-minus {
   color: var(--color-dark-red);
+}
+
+@media (max-width: 1000px) {
+  .liquidity-buffer {
+    max-width: 562px;
+  }
 }

@@ -2,8 +2,7 @@
 
 .kpi-stats {
   @include mix.widget;
-  max-width: 1216px;
-  width: 100%;
+  max-width: 100%;
   border-radius: var(--border-radius);
   gap: unset;
 
