@@ -1,8 +1,8 @@
 import { animate } from 'framer-motion';
 import { useEffect, useRef } from 'react';
 
-import { useAppSelector } from '@/redux/hooks';
-import type { Message } from '@/redux/store/messages/types';
+import { useAppSelector } from '@/redux-rtk/hooks';
+import type { Message } from '@/redux-rtk/store/messages/types';
 import { LocalLoader } from '@/shared/LocalLoader';
 import { InfoCard } from '@/shared/ui/info-card';
 import { PromptBar } from '@/shared/ui/prompt-bar';
