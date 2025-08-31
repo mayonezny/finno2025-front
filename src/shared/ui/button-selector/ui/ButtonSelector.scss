@@ -1,0 +1,61 @@
+.button-selector {
+  --control-h: 40px;
+
+  position: relative;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(var(--count), 1fr);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  background: var(--color-contrast-red);
+  height: var(--control-h);
+  &--m {
+    --control-h: 40px;
+  }
+  &--s {
+    --control-h: 30px;
+  }
+
+  &[data-disabled='true'] {
+    opacity: 0.75;
+    pointer-events: none;
+  }
+
+  .selector-indicator {
+    position: absolute;
+    z-index: 0;
+    left: 0;
+    top: 0;
+    border-radius: inherit;
+    background: var(--color-dark-red);
+  }
+
+  .selector-button {
+    position: relative;
+    z-index: 1;
+    height: var(--control-h);
+    border: 0;
+    background: transparent;
+    color: #fff;
+    padding: 0 16px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+
+    &:focus-visible {
+      outline: none;
+      border: none;
+    }
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+}
