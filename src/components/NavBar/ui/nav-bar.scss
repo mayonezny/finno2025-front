@@ -52,6 +52,14 @@
 }
 
 .NavBar--expanded {
+  .row {
+    padding-left: 12px;
+    &:hover {
+      background-color: #ebebeb;
+    }
+    transition: 0.3s ease-in;
+    border-radius: 8px;
+  }
   .row__label {
     width: auto;
     opacity: 1;
@@ -74,17 +82,57 @@
   padding-top: 24px;
   width: 100%;
   height: 64px;
+
+  z-index: 5; /* сама по себе ниже, чем оверлей */
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  gap: 16px;
+  font-size: 18px;
+  padding: 0 24px;
+  padding-top: 24px;
   svg {
     color: var(--color-dark-red);
+  }
+  .icon-btn,
+  .icon {
+    width: 24px;
+    height: 24px;
+    flex: 0 0 24px;
+    cursor: pointer;
   }
   .ai-chat-button {
     color: #fff;
     background-color: var(--color-dark-red);
     border-radius: 12px;
     padding: 8px 16px;
+    border: 0;
   }
+}
+
+/* overlay + панель */
+.MobileDrawer {
+  position: fixed;
+  inset: 0; /* top:0 right:0 bottom:0 left:0 */
+  z-index: 9999; /* поверх всего */
+}
+
+.MobileDrawer__backdrop {
+  position: absolute;
+  inset: 0;
+  background: #000;
+}
+
+.MobileDrawer__panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100dvh; /* корректно на мобилках */
+  width: 100vw; /* вся ширина экрана */
+  background: #fff;
+  border-right: var(--border);
+  padding: 24px 16px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }

@@ -58,7 +58,6 @@ export const ChatWidget: React.FC = () => {
 
   return (
     <div className="chat-widget">
-      <ChatWidgetHeader />
       <div className="chat-row" ref={boxRef}>
         {messages.map((msg: Message) => (
           <TextBubble key={msg.id} chatbotAnswer={msg.chatbotAnswer} message={msg.message} />
