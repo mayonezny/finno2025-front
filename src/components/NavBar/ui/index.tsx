@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import {
+  Bell,
   BotMessageSquare,
   ChartNetwork,
   ChevronRightSquare,
@@ -7,7 +8,10 @@ import {
   NotepadText,
 } from 'lucide-react';
 import React, { useState, useMemo } from 'react';
+
 import './nav-bar.scss';
+import { NavLinkButton } from '@/shared/ui/nav-link-button';
+import { useMediaQuery } from '@/utils/hooks/useMediaQuery';
 
 const ROWS = [
   { icon: LineChartIcon, label: 'Аналитика' },
@@ -18,13 +22,14 @@ const ROWS = [
 
 export const NavBar: React.FC = () => {
   const [isCollapsed, setCollapsed] = useState(true);
+  const isMobile = useMediaQuery('(max-width: 1000px)');
 
   const cls = useMemo(
     () => `NavBar ${isCollapsed ? 'NavBar--collapsed' : 'NavBar--expanded'}`,
     [isCollapsed],
   );
 
-  return (
+  return !isMobile ? (
     <motion.aside
       className={cls}
       /* ширина и лёгкий слайд — приятнее */
@@ -70,5 +75,15 @@ export const NavBar: React.FC = () => {
         ))}
       </div>
     </motion.aside>
+  ) : (
+    <MobileNavBar />
   );
 };
+
+export const MobileNavBar = () => (
+  <div className="MobileNavBar">
+    <ChevronRightSquare />
+    <button className="ai-chat-button">Чат с ИИ-ассистентом</button>
+    <Bell />
+  </div>
+);

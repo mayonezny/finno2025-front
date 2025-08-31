@@ -11,6 +11,7 @@
   height: 1200px;
   border-right: var(--border);
   background-color: #fff;
+
   svg {
     color: var(--color-dark-red);
     cursor: pointer;
@@ -57,5 +58,33 @@
     transition:
       opacity 0.18s ease,
       width 0.18s ease;
+  }
+}
+
+@media (max-width: 900px) {
+  .NavBar {
+    flex-direction: row;
+    height: 64px;
+    width: 100vw;
+  }
+}
+
+.MobileNavBar {
+  position: relative;
+  padding-top: 24px;
+  width: 562px;
+  height: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  svg {
+    color: var(--color-dark-red);
+  }
+  .ai-chat-button {
+    color: #fff;
+    background-color: var(--color-dark-red);
+    border-radius: 12px;
+    padding: 8px 16px;
   }
 }
