@@ -1,0 +1,73 @@
+.ScenarioPage {
+  display: flex;
+  gap: 32px;
+
+  .chat-widget {
+    position: fixed;
+    border: var(--border);
+  }
+
+  --left-col: 280px;
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    width: 100%;
+    margin-top: 32px;
+    gap: 32px;
+    margin-left: 532px;
+
+    .local-loader {
+      margin: auto;
+      min-height: 275px;
+      align-items: center !important;
+    }
+  }
+
+  &__widgets {
+    display: grid;
+    grid-template-columns: var(--left-col) minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      'stats  ebitda'
+      'profit profit';
+    gap: 32px;
+
+    .kpi-stats {
+      grid-area: stats;
+      height: 100%;
+    }
+
+    .ebitdaMargin {
+      grid-area: ebitda;
+    }
+
+    .netProfit {
+      grid-area: profit;
+      width: 100%;
+      max-width: none;
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .ScenarioPage__wrapper {
+    margin-left: 0;
+  }
+
+  .ScenarioPage__widgets {
+    grid-template-areas:
+      'stats'
+      'ebitda'
+      'profit';
+  }
+
+  .ScenarioPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 16px 24px 16px;
+
+    --left-col: unset;
+  }
+}

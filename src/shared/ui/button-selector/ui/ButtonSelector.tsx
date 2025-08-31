@@ -140,7 +140,7 @@ export const ButtonSelector: React.FC<ButtonSelectorProps> = ({
             disabled={disabled || opt.disabled}
             title={typeof opt.label === 'string' ? opt.label : undefined}
           >
-            <span className="button-content">{opt.label}</span>
+            <span className="body-regular button-content">{opt.label}</span>
           </button>
         );
       })}

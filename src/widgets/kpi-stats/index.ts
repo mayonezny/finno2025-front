@@ -1,2 +1,2 @@
 export { KpiStats } from './ui/KpiStats';
-export type { KpiStatsProps } from './model/types';
+export type { KpiStatsProps, Metric } from './model/types';
