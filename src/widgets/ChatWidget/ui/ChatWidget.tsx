@@ -9,6 +9,8 @@ import { PromptBar } from '@/shared/ui/prompt-bar';
 import { TextBubble } from '@/shared/ui/text-bubble';
 
 import './chat-widget.scss';
+import { useMediaQuery } from '@/utils/hooks/useMediaQuery';
+
 import { ChatWidgetHeader } from './ChatWidgetHeader';
 
 // const demoChat: Message[] = [
@@ -33,6 +35,7 @@ import { ChatWidgetHeader } from './ChatWidgetHeader';
 //];
 
 export const ChatWidget: React.FC = () => {
+  const isDesktop = useMediaQuery('(min-width: 1001px)');
   const { isLoaderActive } = useAppSelector((state) => state.loaderReducer);
   const { messages, info } = useAppSelector((state) => state.messagesReducer);
   const boxRef = useRef<HTMLDivElement>(null);
@@ -58,7 +61,7 @@ export const ChatWidget: React.FC = () => {
 
   return (
     <div className="chat-widget">
-      <ChatWidgetHeader />
+      {isDesktop && <h2 className="desktop-header">ИИ-ассистент</h2>}
       <div className="chat-row" ref={boxRef}>
         {messages.map((msg: Message) => (
           <TextBubble key={msg.id} chatbotAnswer={msg.chatbotAnswer} message={msg.message} />

@@ -33,7 +33,6 @@ const weeklyBars = [
 
 export const HomePage: React.FC = () => {
   const isMobile = useMediaQuery('(max-width: 1149px)');
-  const album = useMediaQuery('(min-width: 900px)');
   return (
     <div className="HomePage">
       <KpiStats

@@ -3,8 +3,9 @@
   grid-template-columns: repeat(2, 1fr);
   max-width: 1216px;
   width: 100%;
-  padding: 36px 16px;
+  padding: 24px 16px;
   gap: 32px;
+  justify-self: center;
 }
 .HomePage > :first-child {
   grid-column: 1 / -1;

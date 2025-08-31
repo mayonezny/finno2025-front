@@ -1,9 +1,16 @@
 .chat-widget {
   display: flex;
+  max-width: 500px;
   width: 90%;
+  height: 90%;
   flex-direction: column;
   align-items: center;
   gap: 16px;
+  overflow: hidden;
+}
+.desktop-header {
+  align-self: flex-start;
+  margin-left: 32px;
 }
 .chat-row {
   display: flex;
@@ -11,9 +18,8 @@
   align-items: center;
   gap: 12px;
   width: 100%;
-  margin: 8px 0;
-  height: 410px;
   overflow: scroll;
+  margin-top: 24px;
 
   //padding: 24px 12px;
   border-radius: 12px;
@@ -23,18 +29,30 @@
   padding: 32px 24px;
 }
 .chatwidget-header {
+  background-color: #fff;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 18px;
-  padding: 0 10px;
+  padding: 0 16px;
+  z-index: 20;
 }
-@media (min-width: 760px) {
+@media (min-width: 768px) {
+  .chat-widget {
+    height: 100vh;
+    padding-bottom: 24px;
+    justify-self: center;
+  }
   .chat-row {
+    width: 90%;
+    align-items: baseline;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.295);
     background: var(--color-second-bg);
     gap: 18px;
+    padding: 12px 12px;
+    height: 100%;
+    margin-top: 0px;
   }
 }
 .r {
