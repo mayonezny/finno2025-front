@@ -1,8 +1,8 @@
-import { SmartTable, type Column, type SmartRow } from '@/shared/SmartTable';
-import { TextWithHint } from '@/shared/ui/textbox-with-hint';
-import { type Payment, groupByDateToRows, payments } from '@/utils/demo/payments';
-import './payments-page.scss';
+import { SmartTable, type Column } from '@/shared/SmartTable';
 import { InfoCard } from '@/shared/ui/info-card';
+import { TextWithHint } from '@/shared/ui/textbox-with-hint';
+import { type Payment, payments } from '@/utils/demo/payments';
+import './payments-page.scss';
 
 const returnColor = (text: string) => {
   switch (text) {
