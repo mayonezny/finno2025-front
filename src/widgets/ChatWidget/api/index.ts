@@ -1,11 +1,11 @@
 import { useEffect, useRef } from 'react';
 
-import { addMessage } from '@/redux/store/messages';
-import { askChatbot } from '@/redux/store/messages/messagesThunks';
+import { addMessage } from '@/redux-rtk/store/messages';
+import { askChatbot } from '@/redux-rtk/store/messages/messagesThunks';
 import type { AutoTextareaHandle } from '@/shared/AutoTextarea';
 
-import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
-import { showLoader, hideLoader } from '../../../redux/store/loader';
+import { useAppDispatch, useAppSelector } from '../../../redux-rtk/hooks';
+import { showLoader, hideLoader } from '../../../redux-rtk/store/loader';
 
 export const useChat = () => {
   const dispatch = useAppDispatch();

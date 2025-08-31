@@ -7,7 +7,7 @@ import { router } from './router';
 
 import './styles/index.scss';
 
-import { store } from '../redux';
+import { store } from '../redux-rtk';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

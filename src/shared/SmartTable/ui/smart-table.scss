@@ -1,0 +1,147 @@
+.data-table {
+  --radius: 12px;
+  --border: 1px solid #e5e7eb;
+  --bg: #fff;
+  --bg-alt: #fafbfc;
+  --text: #111827;
+  --muted: #6b7280;
+
+  border: var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--bg);
+
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    color: var(--text);
+  }
+
+  thead {
+    background: #f6f7f9;
+    th {
+      text-align: left;
+      font-weight: 600;
+      font-size: 14px;
+      color: #4b5563;
+      padding: 12px 16px;
+      border-bottom: var(--border);
+      white-space: nowrap;
+    }
+    &.is-sticky {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+    }
+  }
+
+  tbody {
+    td {
+      padding: 12px 16px;
+      border-bottom: var(--border);
+      vertical-align: top;
+      background: var(--bg);
+    }
+  }
+
+  &.is-compact {
+    thead th,
+    tbody td {
+      padding: 8px 12px;
+    }
+  }
+
+  &.is-zebra {
+    tbody tr:nth-child(even) td {
+      background: var(--bg-alt);
+    }
+  }
+
+  th.is-right,
+  td.is-right {
+    text-align: right;
+  }
+  th.is-center,
+  td.is-center {
+    text-align: center;
+  }
+  th.is-left,
+  td.is-left {
+    text-align: left;
+  }
+
+  /* скругления контейнера */
+  table tr:first-child th:first-child {
+    border-top-left-radius: var(--radius);
+  }
+  table tr:first-child th:last-child {
+    border-top-right-radius: var(--radius);
+  }
+  table tr:last-child td:first-child {
+    border-bottom-left-radius: var(--radius);
+  }
+  table tr:last-child td:last-child {
+    border-bottom-right-radius: var(--radius);
+  }
+}
+
+/* desktop всё как было */
+
+@media (max-width: 700px) {
+  .data-table {
+    border: 0;
+    overflow: visible;
+    width: 85%;
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+      display: block;
+    }
+    thead {
+      display: none;
+    } /* заголовок спрячем */
+
+    tbody tr {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      margin: 10px 0;
+      padding: 8px 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    tbody td {
+      display: grid;
+      grid-template-columns: 140px 1fr; /* метка + значение */
+      gap: 10px;
+      padding: 8px 0;
+      border: 0;
+      background: transparent;
+      justify-self: center;
+    }
+
+    tbody td::before {
+      content: attr(data-label);
+      font-size: 12px;
+      color: #6b7280;
+      align-self: start;
+    }
+
+    /* правая колонка выравниваем по обычному тексту */
+    td.is-right {
+      justify-content: end;
+    }
+  }
+  .twh {
+    align-self: center;
+  }
+  .data-table tbody td {
+    grid-template-columns: 1fr; /* одна колонка */
+    justify-items: flex-start;
+    margin-left: 0;
+  }
+}
