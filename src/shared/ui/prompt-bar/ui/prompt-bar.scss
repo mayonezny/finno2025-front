@@ -23,3 +23,8 @@
     opacity: 0.3;
   }
 }
+@media (min-width: 768px) {
+  .prompt-bar {
+    width: 90%;
+  }
+}
