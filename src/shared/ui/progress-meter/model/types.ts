@@ -7,6 +7,10 @@ export type ProgressMeterProps = {
   criticalThreshold?: number;
   goal?: number;
 
+  height: number;
+  radius: number;
+  trackColor: string;
+
   labels?: {
     critical?: string;
     goal?: string;

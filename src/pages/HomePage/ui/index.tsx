@@ -89,7 +89,7 @@ export const HomePage: React.FC = () => {
         title="Карта денежных потоков"
         HHI={0.29}
         data={treemap_data}
-        onTileClick={(item) => console.log('tile clicked', item)}
+        onTileClick={() => {}}
       />
       <LiquidityBuffer
         title="Буфер ликвидности"
