@@ -1,15 +1,15 @@
+import type React from 'react';
+
 import type { TrendTagProps } from '../../trend-tag';
 
 export type Color = 'green' | 'blue' | 'red';
 
-export type KpiCardProps = {
+type BaseProps = {
   title?: string;
   subtitle?: string;
 
   value: number;
-
   unit?: string;
-
   fractionDigits?: number;
 
   colorRule?: (value: number) => Color;
@@ -20,3 +20,5 @@ export type KpiCardProps = {
 
   trendTag?: TrendTagProps;
 };
+
+export type KpiCardProps = BaseProps & Omit<React.HTMLAttributes<HTMLDivElement>, 'title'>;

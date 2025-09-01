@@ -19,6 +19,7 @@ export const KpiCard: React.FC<KpiCardProps> = ({
   bordered = false,
   background = '#fff',
   padding = '8px 12px',
+  ...rest
 }) => {
   const color: Color = colorRule?.(value) ?? 'blue';
 
@@ -28,6 +29,18 @@ export const KpiCard: React.FC<KpiCardProps> = ({
     <div
       className={`kpi-card ${bordered ? 'kpi-card--bordered' : ''}`}
       style={{ background, padding }}
+      {...rest}
+      role={rest.onClick ? 'button' : rest.role}
+      tabIndex={rest.onClick ? 0 : rest.tabIndex}
+      onKeyDown={(e) => {
+        if (!rest.onClick) {
+          return;
+        }
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          (rest.onClick as unknown as () => void)();
+        }
+      }}
     >
       <div className="kpi-card__top">
         <div className="caption">{title}</div>
