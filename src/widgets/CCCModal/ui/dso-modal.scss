@@ -1,0 +1,33 @@
+.dso-toolbar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 8px;
+
+  .dso-select {
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 6px 10px;
+    background: #fff;
+  }
+  .dso-search {
+    flex: 1 1 auto;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 6px 10px;
+  }
+}
+
+.dso-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* подсветка просрочки, пример */
+.data-table .overdue {
+  color: #e11d48;
+  font-weight: 600;
+}

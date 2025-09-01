@@ -22,6 +22,7 @@ import {
 } from '@/entities/homepage';
 import { useMediaQuery } from '@/utils/hooks/useMediaQuery';
 import { CashflowTreemap } from '@/widgets/cashflow-treemap';
+import { DSOModalDemo } from '@/widgets/CCCModal/ui/DSOModal';
 import { KpiStats } from '@/widgets/kpi-stats';
 import { LiquidityBuffer } from '@/widgets/liquidity-buffer/ui/LiquidityBuffer';
 import { RepaymentChart } from '@/widgets/repayment-chart/ui/RepaymentChart';
@@ -32,6 +33,8 @@ export const HomePage: React.FC = () => {
 
   return (
     <div className="HomePage">
+      <DSOModalDemo />
+
       <KpiStats
         layout={isMobile ? 'vertical' : 'horizontal'}
         {...(isMobile && { title: 'Ключевые показатели' })}
