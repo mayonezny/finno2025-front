@@ -5,6 +5,15 @@
   .chat-widget {
     position: fixed;
     border: var(--border);
+    background-color: #fff;
+
+    .chat-row {
+      background-color: var(--color-second-bg);
+    }
+
+    .prompt-bar {
+      background-color: var(--color-second-bg);
+    }
   }
 
   --left-col: 280px;
@@ -16,6 +25,8 @@
     margin-top: 32px;
     gap: 32px;
     margin-left: 532px;
+    margin-bottom: 32px;
+    min-width: 0;
 
     .local-loader {
       margin: auto;
@@ -32,16 +43,18 @@
       'stats  ebitda'
       'profit profit';
     gap: 32px;
+    min-width: 0;
+    > * {
+      min-width: 0;
+    }
 
     .kpi-stats {
       grid-area: stats;
       height: 100%;
     }
-
     .ebitdaMargin {
       grid-area: ebitda;
     }
-
     .netProfit {
       grid-area: profit;
       width: 100%;
@@ -56,6 +69,7 @@
   }
 
   .ScenarioPage__widgets {
+    grid-template-columns: 1fr;
     grid-template-areas:
       'stats'
       'ebitda'

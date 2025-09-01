@@ -17,12 +17,12 @@ import type { Metric as KpiMetric } from '@/widgets/kpi-stats';
 import { WidgetCard } from '@/widgets/widget-card';
 
 import './scenario-page.scss';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
-const SCENARIO_OPTIONS: ButtonSelectorOption[] = [
-  { value: 'pess', label: 'Пессимистичный' },
+const SCENARIO_OPTIONS: (isMobile: boolean) => ButtonSelectorOption[] = (isMobile) => [
+  { value: 'pess', label: isMobile ? 'Пессимист.' : 'Пессимистичный' },
   { value: 'base', label: 'Стандартный' },
-  { value: 'opt', label: 'Оптимистичный' },
+  { value: 'opt', label: isMobile ? 'Оптимист.' : 'Оптимистичный' },
 ];
 
 const netProfitQuestion = 'Расскажи подробнее о том как была высчитана чистая прибыль';
@@ -140,10 +140,10 @@ export const ScenarioPage: React.FC = () => {
 
       <div className="ScenarioPage__wrapper">
         <ButtonSelector
-          options={SCENARIO_OPTIONS}
+          options={SCENARIO_OPTIONS(isMobile)}
           value={scenarioKey}
           onChange={handleScenarioChange}
-          size={isMobile ? 's' : 'm'}
+          size={'m'}
           aria-label="Выбор сценария"
         />
 
