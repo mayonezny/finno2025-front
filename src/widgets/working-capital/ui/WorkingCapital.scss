@@ -15,6 +15,25 @@
 
     .kpi-card {
       width: 100%;
+      cursor: pointer;
+      user-select: none;
+      transition:
+        transform 120ms ease-out,
+        box-shadow 120ms ease-out,
+        filter 120ms ease-out;
+
+      @media (max-width: 768px) {
+        .kpi-card__top {
+          flex-direction: column;
+        }
+      }
+    }
+    .kpi-card:hover {
+      transform: translateZ(0) scale(1.01);
+      filter: saturate(1.05);
+      box-shadow:
+        0 0 0 2px rgba(255, 255, 255, 0.14) inset,
+        0 6px 18px rgba(0, 0, 0, 0.12);
     }
   }
 }

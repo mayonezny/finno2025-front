@@ -1,0 +1,24 @@
+.data-modal__toolbar {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 12px;
+  align-items: center;
+  padding: 8px 0 12px 0;
+  max-width: 800px;
+  width: 100%;
+}
+@media (max-width: 640px) {
+  .data-modal__toolbar {
+    grid-template-columns: 1fr;
+  }
+}
+.data-modal__table {
+  border-radius: 12px;
+  overflow: hidden;
+}
+.modal__footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 12px;
+}

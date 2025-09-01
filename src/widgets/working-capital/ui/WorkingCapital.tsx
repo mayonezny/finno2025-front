@@ -1,8 +1,13 @@
 import React from 'react';
 
+import { dioColumns, dioRows } from '@/entities/smart-table/dio.data';
+import { dpoColumns, dpoRows } from '@/entities/smart-table/dpo.data';
+import { dsoColumns, dsoRows } from '@/entities/smart-table/dso.data';
+import type { DsoRow, DpoRow, DioRow } from '@/entities/smart-table/types';
 import { formatCompactNumber } from '@/shared/lib/format/number';
 import { InfoCard } from '@/shared/ui/info-card';
 import { KpiCard } from '@/shared/ui/kpi-card/ui/KpiCard';
+import { DataTableModal } from '@/widgets/data-modal';
 
 import { colorRuleLowerIsBetter, colorRuleHigherIsBetter } from '../lib/rules';
 import type { WorkingCapitalProps } from '../model/types';
@@ -20,6 +25,14 @@ export const WorkingCapital: React.FC<WorkingCapitalProps> = ({
 
   const ccc = dio.value + dso.value - dpo.value;
   const operatingCycle = dio.value + dso.value;
+
+  const [openDSO, setOpenDSO] = React.useState(false);
+  const [openDPO, setOpenDPO] = React.useState(false);
+  const [openDIO, setOpenDIO] = React.useState(false);
+
+  const dsoData = React.useMemo<DsoRow[]>(() => dsoRows.map((r) => r.data), []);
+  const dpoData = React.useMemo<DpoRow[]>(() => dpoRows.map((r) => r.data), []);
+  const dioData = React.useMemo<DioRow[]>(() => dioRows.map((r) => r.data), []);
 
   return (
     <div className="working-capital">
@@ -44,6 +57,7 @@ export const WorkingCapital: React.FC<WorkingCapitalProps> = ({
           bordered={bordered}
           background={background}
           padding={padding}
+          onClick={() => setOpenDSO(true)}
         />
 
         <KpiCard
@@ -61,6 +75,7 @@ export const WorkingCapital: React.FC<WorkingCapitalProps> = ({
           bordered={bordered}
           background={background}
           padding={padding}
+          onClick={() => setOpenDPO(true)}
         />
 
         <KpiCard
@@ -78,6 +93,7 @@ export const WorkingCapital: React.FC<WorkingCapitalProps> = ({
           bordered={bordered}
           background={background}
           padding={padding}
+          onClick={() => setOpenDIO(true)}
         />
       </div>
 
@@ -87,6 +103,60 @@ export const WorkingCapital: React.FC<WorkingCapitalProps> = ({
           {operatingCycle + dpo.value} {unit}
         </div>
       </div>
+
+      {/* ===== МОДАЛКИ ===== */}
+
+      {/* DSO */}
+      <DataTableModal<DsoRow>
+        isOpen={openDSO}
+        onClose={() => setOpenDSO(false)}
+        title="DSO"
+        data={dsoData}
+        columns={dsoColumns}
+        groupBy={{ key: 'counterparty', allLabel: 'Все контрагенты', allToken: 'all' }}
+        search={{ fields: ['counterparty'], placeholder: 'Поиск' }}
+        footerLeftLabel="Всего"
+        footerRight={(rows) => {
+          const cnt = new Set(rows.map((r) => r.counterparty)).size;
+          return <>{cnt} контрагента</>;
+        }}
+      />
+
+      {/* DPO */}
+      <DataTableModal<DpoRow>
+        isOpen={openDPO}
+        onClose={() => setOpenDPO(false)}
+        title="DPO"
+        data={dpoData}
+        columns={dpoColumns}
+        groupBy={{ key: 'counterparty', allLabel: 'Все контрагенты', allToken: 'all' }}
+        search={{ fields: ['counterparty'], placeholder: 'Поиск' }}
+        footerLeftLabel="Всего"
+        footerRight={(rows) => {
+          const cnt = new Set(rows.map((r) => r.counterparty)).size;
+          return (
+            <>
+              {cnt} контрагент{cnt % 10 === 1 && cnt % 100 !== 11 ? '' : 'а'}
+            </>
+          );
+        }}
+      />
+
+      {/* DIO */}
+      <DataTableModal<DioRow>
+        isOpen={openDIO}
+        onClose={() => setOpenDIO(false)}
+        title="DIO"
+        data={dioData}
+        columns={dioColumns}
+        groupBy={{ key: 'group', allLabel: 'Все товарные группы', allToken: 'all' }}
+        search={{ fields: ['group'], placeholder: 'Поиск' }}
+        footerLeftLabel="Всего"
+        footerRight={(rows) => {
+          const cnt = new Set(rows.map((r) => r.group)).size;
+          return <>{cnt} товарных групп</>;
+        }}
+      />
     </div>
   );
 };

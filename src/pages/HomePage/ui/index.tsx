@@ -20,8 +20,12 @@ import {
   buildRepaymentDetail,
   buildRepaymentDefaultDetail,
 } from '@/entities/homepage';
+import { cashColumns, cashRows } from '@/entities/smart-table/cashflows.data';
+import { fmtMoneyRu } from '@/entities/smart-table/smartTable.format';
+import type { CashAccountRow } from '@/entities/smart-table/types';
 import { useMediaQuery } from '@/utils/hooks/useMediaQuery';
 import { CashflowTreemap } from '@/widgets/cashflow-treemap';
+import DataTableModal from '@/widgets/data-modal/ui/DataTableModal';
 import { KpiStats } from '@/widgets/kpi-stats';
 import { LiquidityBuffer } from '@/widgets/liquidity-buffer/ui/LiquidityBuffer';
 import { RepaymentChart } from '@/widgets/repayment-chart/ui/RepaymentChart';
@@ -29,6 +33,9 @@ import { WorkingCapital } from '@/widgets/working-capital';
 
 export const HomePage: React.FC = () => {
   const isMobile = useMediaQuery('(max-width: 1149px)');
+  const [cashOpen, setCashOpen] = React.useState(false);
+
+  const cashData: CashAccountRow[] = React.useMemo(() => cashRows.map((r) => r.data), []);
 
   return (
     <div className="HomePage">
@@ -43,7 +50,27 @@ export const HomePage: React.FC = () => {
         title={TREEMAP_TITLE}
         HHI={TREEMAP_HHI}
         data={TREEMAP_DATA}
-        onTileClick={() => {}}
+        onTileClick={() => setCashOpen(true)}
+      />
+
+      <DataTableModal<CashAccountRow>
+        isOpen={cashOpen}
+        onClose={() => setCashOpen(false)}
+        title="Денежные потоки"
+        data={cashData}
+        columns={cashColumns}
+        groupBy={{ key: 'bank', allLabel: 'Все банки', allToken: 'all' }}
+        search={{ fields: ['bank', 'account'], placeholder: 'Поиск' }}
+        footerLeftLabel="Всего"
+        footerRight={(rows) => {
+          const total = rows.reduce((a, r) => a + r.balance, 0);
+          const banks = new Set(rows.map((r) => r.bank)).size;
+          return (
+            <>
+              {fmtMoneyRu(total)}&nbsp;/&nbsp;{banks} Банков
+            </>
+          );
+        }}
       />
 
       <LiquidityBuffer
@@ -83,3 +110,5 @@ export const HomePage: React.FC = () => {
     </div>
   );
 };
+
+export default HomePage;

@@ -7,7 +7,7 @@ export type DropdownItem = {
 type NativeDiv = Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'>;
 
 export type DropdownProps = NativeDiv & {
-  items: DropdownItem[];
+  items: ReadonlyArray<DropdownItem>;
   value?: DropdownItem['value'];
   defaultValue?: DropdownItem['value'];
   placeholder?: string;

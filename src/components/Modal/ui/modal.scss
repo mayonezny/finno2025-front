@@ -1,0 +1,89 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(17, 24, 39, 0.45); /* затемнение */
+  backdrop-filter: blur(4px); /* лёгкий блюр */
+  display: grid;
+  place-items: center;
+  padding: 16px; /* отступы по краям экрана */
+}
+
+.modal {
+  position: relative;
+  background: #fff;
+  color: #111827;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  max-height: 90vh;
+  overflow: auto;
+  max-width: 800px;
+  width: 100%;
+
+  /* базовая компоновка — размер по контенту */
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 16px 20px;
+
+  /* модификаторы размера по желанию */
+  &.modal--sm {
+    max-width: 420px;
+    width: fit-content;
+  }
+  &.modal--md {
+    max-width: 720px;
+    width: fit-content;
+  }
+  &.modal--lg {
+    max-width: 960px;
+    width: fit-content;
+  }
+}
+
+.modal__header {
+  padding-right: 36px; /* место под крестик */
+}
+
+.modal__title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.modal__content {
+  /* пространство под ваш контент (таблицы, фильтры и т.д.) */
+}
+
+.modal__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: 0;
+  background: transparent;
+  padding: 6px;
+  cursor: pointer;
+  border-radius: 8px;
+
+  svg {
+    width: 20px;
+    height: 20px;
+    color: #6b7280;
+  }
+  &:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+  &:focus-visible {
+    outline: 2px solid #d4142a;
+    outline-offset: 2px;
+  }
+}
+
+/* мобильные улучшения */
+@media (max-width: 768px) {
+  .modal {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 12px;
+  }
+}
