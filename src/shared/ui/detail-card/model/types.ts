@@ -13,4 +13,6 @@ export type DetailCardProps = {
 
   className?: string;
   style?: React.CSSProperties;
+
+  preventClose?: boolean;
 };

@@ -6,9 +6,11 @@
   padding: 8px;
   width: 100%;
   margin-top: auto;
+  background: #fff;
   &__input {
     font-size: 14px;
     color: var(--color-black);
+    background: none;
     &::placeholder {
       color: #889dbc;
     }
@@ -17,14 +19,10 @@
 }
 .submit-button {
   background-color: transparent;
+  border-radius: 8px;
   cursor: pointer;
   border: none;
   &__disabled {
     opacity: 0.3;
-  }
-}
-@media (min-width: 768px) {
-  .prompt-bar {
-    width: 90%;
   }
 }

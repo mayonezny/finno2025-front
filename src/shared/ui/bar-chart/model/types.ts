@@ -33,6 +33,8 @@ export interface BarChartProps {
 
   segmentGap?: number;
   onSegmentClick?: (args: BarSegmentClick) => void;
+
+  sensivity?: number;
 }
 
 export type BarSegmentClick = {

@@ -20,13 +20,24 @@ export const BarChart: React.FC<BarChartProps> = ({
   maxHeight = 220,
   segmentGap = 4,
   onSegmentClick,
+  sensivity = 1,
 }) => {
   const safeData = Array.isArray(data) ? data : [];
 
-  const maxTotal = Math.max(
-    1,
-    ...safeData.map((d) => (d.values ?? []).reduce<number>((acc, v) => acc + v.value, 0)),
-  );
+  const totals = safeData.map((d) => (d.values ?? []).reduce<number>((a, v) => a + v.value, 0));
+  const minTotal = Math.min(...totals, 0);
+  const maxTotal = Math.max(...totals, 1);
+
+  const norm = (t: number) => {
+    const range = Math.max(1, maxTotal - minTotal);
+    let base = (t - minTotal) / range;
+
+    base = Math.pow(base, sensivity);
+
+    const padded = 0.15 + base * 0.85;
+
+    return Math.min(1, Math.max(0, padded));
+  };
 
   const styleVars: CSSVars = {
     '--chartH': `${maxHeight}px`,
@@ -52,10 +63,10 @@ export const BarChart: React.FC<BarChartProps> = ({
         {safeData.map((d, i) => {
           const values = Array.isArray(d.values) ? d.values : [];
           const total = values.reduce<number>((acc, v) => acc + v.value, 0);
-          const barHeightPct = Math.max(0, Math.min(100, (total / maxTotal) * 100));
+          const barHeightPct = norm(total) * 100;
           const singleColor =
             colorMode === 'single'
-              ? withLightness(baseColor, lerp(40, 92, total / maxTotal))
+              ? withLightness(baseColor, lerp(40, 92, norm(total)))
               : undefined;
 
           return (

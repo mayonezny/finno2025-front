@@ -1,0 +1,22 @@
+@use '@/app/styles/mixins.scss' as mix;
+
+.widget {
+  @include mix.widget;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__footer {
+    margin-top: auto;
+  }
+}
