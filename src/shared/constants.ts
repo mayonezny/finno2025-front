@@ -2,6 +2,6 @@ const local: boolean = false;
 const safeMode: boolean = true;
 export const API_URL = local
   ? `${safeMode ? 'https' : 'http'}://192.168.0.23:8080/api`
-  : 'https://hack.uwu-devcrew.ru';
+  : 'https://hack.uwu-devcrew.ru/api';
 
 export const PROMPT_URL = 'rag/query';
