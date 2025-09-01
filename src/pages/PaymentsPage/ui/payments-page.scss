@@ -43,6 +43,14 @@
     grid-template-columns: 1fr;
   }
 
+  .data-table {
+    background-color: transparent !important;
+  }
+
+  .data-table.is-zebra tbody tr:nth-child(2n) td {
+    background-color: #fff !important;
+  }
+
   .data-table thead {
     display: none;
   }
