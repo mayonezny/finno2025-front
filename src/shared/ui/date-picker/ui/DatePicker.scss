@@ -1,0 +1,155 @@
+.date-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  &[data-disabled='true'] {
+    pointer-events: none;
+
+    .date-input-wrapper {
+      background: var(--color-grey);
+      border-color: var(--color-grey);
+      color: var(--color-gray);
+
+      input {
+        color: var(--color-gray);
+      }
+    }
+  }
+
+  .date-picker-label {
+    .required {
+      color: var(--color-contrast-red);
+      margin-left: 0.25em;
+    }
+  }
+
+  .date-input-wrapper,
+  .range-input-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: var(--color-second-bg);
+    border: var(--border);
+    border-radius: var(--border-radius);
+    padding: 0 12px;
+    height: 40px;
+    transition:
+      border-color 0.16s ease,
+      background-color 0.16s ease,
+      box-shadow 0.16s ease;
+
+    &:focus-within {
+      border-color: var(--color-contrast-red);
+      box-shadow: 0 0 0 2px color-mix(in oklab, var(--color-contrast-red) 40%, transparent);
+    }
+
+    input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-size: 14px;
+
+      padding: 0;
+
+      &::placeholder {
+        color: var(--color-caption);
+      }
+
+      &:disabled {
+        color: var(--color-gray);
+      }
+    }
+
+    .calendar-toggle {
+      background: none;
+      border: none;
+      font-size: 1.25em;
+      cursor: pointer;
+      color: var(--color-contrast-red);
+      padding: 0;
+    }
+
+    .range-separator {
+      font-size: 14px;
+      color: var(--color-gray);
+      padding: 0 8px;
+    }
+  }
+
+  .calendar-popup {
+    background: var(--color-second-bg);
+    border: var(--border);
+    border-radius: var(--border-radius);
+    padding: 8px;
+    margin-top: 4px;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+    z-index: 20;
+    width: 100%;
+
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 500;
+      font-size: 14px;
+      margin-bottom: 4px;
+
+      .month-nav {
+        background: none;
+        border: none;
+        font-size: 1.25em;
+        color: var(--color-contrast-red);
+        cursor: pointer;
+      }
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+
+      .day-header {
+        text-align: center;
+        font-weight: 500;
+        color: var(--color-gray);
+      }
+
+      .calendar-day {
+        text-align: center;
+        padding: 0.5em 0;
+        border-radius: var(--border-radius);
+        cursor: pointer;
+        font-weight: 500;
+
+        transition: background 0.16s ease;
+
+        &:hover {
+          background: color-mix(in oklab, var(--color-contrast-red) 6%, transparent);
+        }
+
+        &.selected {
+          background: color-mix(in oklab, var(--color-contrast-red) 10%, transparent);
+        }
+
+        &.disabled {
+          color: var(--color-gray);
+          cursor: not-allowed;
+          background: transparent;
+        }
+
+        &.outside {
+          color: var(--color-gray);
+        }
+      }
+    }
+  }
+
+  .error-message {
+    font-size: 12px;
+    color: var(--color-contrast-red);
+    margin-top: 4px;
+  }
+}

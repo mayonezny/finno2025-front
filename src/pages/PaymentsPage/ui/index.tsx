@@ -123,7 +123,6 @@ export const PaymentsPage: React.FC = () => {
         q={q}
         setQ={setQ}
       />
-
       <div className="payments__kpi">
         <KpiCard title="Общая сумма операций" value={totalSum} bordered colorRule={() => 'red'} />
         <KpiCard
@@ -134,7 +133,6 @@ export const PaymentsPage: React.FC = () => {
         />
         <KpiCard title="В ожидании" value={pendingCount} bordered colorRule={() => 'red'} />
       </div>
-
       <div className="payments__table">
         <SmartTable columns={columns} rows={rows} zebra stickyHeader />
       </div>
