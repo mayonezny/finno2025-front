@@ -55,13 +55,13 @@ export const KPI_METRICS: KpiMetric[] = [
 // ───────────────────────────────────────────────────────────────────────────────
 // Treemap (Карта денежных потоков)
 // ───────────────────────────────────────────────────────────────────────────────
-export const TREEMAP_TITLE = 'Карта денежных потоков';
+export const TREEMAP_TITLE = 'Свободные средства и лимиты';
 export const TREEMAP_HHI = 0.29;
 export const TREEMAP_DATA: TreemapItem[] = [
-  { id: 'sber-1', title: 'Сбербанк', value: 4_200_000 },
-  { id: 'sber-2', title: 'Сбербанк', value: 2_200_000 },
-  { id: 'sber-3', title: 'Сбербанк', value: 800_000 },
-  { id: 'sber-4', title: 'Сбербанк', value: 800_000 },
+  { id: 'sber-1', title: 'Альфа-банк', value: 10_200_000 },
+  { id: 'sber-2', title: 'Газпром-банк', value: 10_300_000 },
+  { id: 'sber-3', title: 'Центр-инвест', value: 5_800_000 },
+  { id: 'sber-4', title: 'ВТБ', value: 5_600_000 },
   { id: 'sber-5', title: 'Сбербанк', value: 200_000 },
   { id: 'sber-6', title: 'Сбербанк', value: 200_000 },
 ];
@@ -90,32 +90,32 @@ export const LB_PROGRESS = {
   radius: 20,
 } as const;
 export const LB_SHEET_TITLE = 'Outflow за 7 дней — 2.41M';
-export const LB_SHEET_ITEMS: BreakdownItem[] = [
-  {
-    title: 'Налоги',
-    amount: 850_000,
-    sharePct: 35,
-    trend: { value: 15, direction: 'up', unit: '%' },
-  },
-  {
-    title: 'Зарплаты',
-    amount: 720_000,
-    sharePct: 30,
-    trend: { value: 2, direction: 'up', unit: '%' },
-  },
-  {
-    title: 'Проценты',
-    amount: 480_000,
-    sharePct: 20,
-    trend: { value: 8, direction: 'up', unit: '%' },
-  },
-  {
-    title: 'Прочее',
-    amount: 120_000,
-    sharePct: 5,
-    trend: { value: 5, direction: 'down', unit: '%' },
-  },
-];
+// export const LB_SHEET_ITEMS: BreakdownItem[] = [
+//   {
+//     title: 'Налоги',
+//     amount: 850_000,
+//     sharePct: 35,
+//     trend: { value: 15, direction: 'up', unit: '%' },
+//   },
+//   {
+//     title: 'Зарплаты',
+//     amount: 720_000,
+//     sharePct: 30,
+//     trend: { value: 2, direction: 'up', unit: '%' },
+//   },
+//   {
+//     title: 'Проценты',
+//     amount: 480_000,
+//     sharePct: 20,
+//     trend: { value: 8, direction: 'up', unit: '%' },
+//   },
+//   {
+//     title: 'Прочее',
+//     amount: 120_000,
+//     sharePct: 5,
+//     trend: { value: 5, direction: 'down', unit: '%' },
+//   },
+// ];
 
 // ───────────────────────────────────────────────────────────────────────────────
 // Repayment Chart — данные графика

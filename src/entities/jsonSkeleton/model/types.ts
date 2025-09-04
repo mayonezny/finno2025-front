@@ -140,7 +140,6 @@ export interface CashFlowEntry {
   use?: string;
   amount: Rub;
   /** Доля в рамках total inflows/outflows (0..1). */
-  share: number;
 }
 
 /* -------------------- Profit -------------------- */
@@ -190,4 +189,6 @@ export interface SupplierShort {
 /* -------------------- Корневой тип JSON -------------------- */
 
 /** Твой полный JSON — массив недельных отчётов. */
-export type PirozhkiWeeklyDataset = WeeklyReport[];
+export type WeeklyDataset = WeeklyReport[];
+
+export type TrendDirection = 'up' | 'down' | 'none';

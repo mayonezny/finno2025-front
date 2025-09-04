@@ -100,7 +100,7 @@ export const WorkingCapital: React.FC<WorkingCapitalProps> = ({
       <div className="wc__row">
         <div className="h3">Цикл оборотного капитала</div>
         <div className="h3">
-          {operatingCycle + dpo.value} {unit}
+          {ccc} {unit}
         </div>
       </div>
 

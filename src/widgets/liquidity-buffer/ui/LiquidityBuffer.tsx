@@ -1,3 +1,4 @@
+/* eslint-disable arrow-body-style */
 import { X } from 'lucide-react';
 import React, { useLayoutEffect, useRef, useState } from 'react';
 
@@ -8,6 +9,7 @@ import { ProgressMeter } from '@/shared/ui/progress-meter/ui/ProgressMeter';
 import { TrendTag } from '@/shared/ui/trend-tag/ui/TrendTag';
 
 import './LiquidityBuffer.scss';
+import type { CashFlowEntry } from '@/entities/jsonSkeleton/model/types';
 
 type BreakdownItem = {
   title: string;
@@ -16,14 +18,14 @@ type BreakdownItem = {
   trend?: { value: number; direction: 'up' | 'down' | 'none'; unit?: string };
 };
 
-type LiquidityBufferProps = {
+export type LiquidityBufferProps = {
   title?: string;
   progress: React.ComponentProps<typeof ProgressMeter>;
   trend?: React.ComponentProps<typeof TrendTag>;
   chart: React.ComponentProps<typeof BarChart>;
   chartRightLabel?: string;
   allPaymentsLink?: { label: string; to: string };
-  sheet?: { title: string; items: BreakdownItem[]; total?: number | string };
+  sheet?: { title: string; items: CashFlowEntry[]; total?: number | string };
 };
 
 export const LiquidityBuffer: React.FC<LiquidityBufferProps> = ({
@@ -132,16 +134,13 @@ export const LiquidityBuffer: React.FC<LiquidityBufferProps> = ({
 
               <div className="lb-breakdown">
                 {sheet.items.map((it, i) => {
-                  const sign =
-                    it.trend?.direction === 'up' ? '+' : it.trend?.direction === 'down' ? '−' : '';
+                  // const sign =
+                  //   it.trend?.direction === 'up' ? '+' : it.trend?.direction === 'down' ? '−' : '';
                   return (
                     <div key={i} className="lb-breakdown__row">
-                      <div className="body-regular">{it.title}</div>
+                      <div className="body-regular">{it.use}</div>
                       <div className="body-medium">{formatCompactNumber(it.amount)}</div>
-                      {typeof it.sharePct === 'number' && (
-                        <div className="body-regular">{it.sharePct}%</div>
-                      )}
-                      {it.trend && (
+                      {/* {it.trend && (
                         <div
                           className={`body-regular ${
                             it.trend.direction === 'up'
@@ -155,7 +154,7 @@ export const LiquidityBuffer: React.FC<LiquidityBufferProps> = ({
                           {it.trend.value}
                           {it.trend.unit ?? '%'}
                         </div>
-                      )}
+                      )} */}
                     </div>
                   );
                 })}
