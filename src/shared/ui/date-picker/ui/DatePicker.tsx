@@ -479,6 +479,7 @@ export const DatePicker = forwardRef<DatePickerRef, DatePickerProps>((props, ref
         startRef.current?.focus();
       }
     },
+    value: inputValue as string,
   }));
 
   // --------------------------

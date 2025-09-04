@@ -21,4 +21,5 @@ export interface DatePickerProps {
 export interface DatePickerRef {
   validate: () => boolean;
   focus: () => void;
+  value: string;
 }
