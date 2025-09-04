@@ -100,11 +100,7 @@ export function mapWeeklyToLiqBuffer(weekly: WeeklyReport): LiquidityBufferProps
   const o = weekly.report.cash_flow;
   const liqbuf: LiquidityBufferProps = {
     title: 'Буфер ликвидности',
-    trend: {
-      value: round1(s.liquidity_buffer_days.change),
-      unit: 'дн.',
-      direction: dir(s.liquidity_buffer_days.change),
-    },
+
     progress: {
       value: s.liquidity_buffer_days.value,
       max: 60,
