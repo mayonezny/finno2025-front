@@ -1,7 +1,7 @@
 import React from 'react';
 import './InfoCard.scss';
 
-export type infoCardType = 'positive' | 'neutral' | 'negative' | 'danger';
+export type infoCardType = 'positive' | 'neutral' | 'negative' | 'danger' | 'glow';
 
 type Props = {
   name: string;

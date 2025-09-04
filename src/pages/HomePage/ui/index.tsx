@@ -7,7 +7,6 @@ import {
   TREEMAP_HHI,
   TREEMAP_DATA,
   LB_TITLE,
-  LB_TREND,
   LB_CHART_DATA,
   LB_CHART_RIGHT_LABEL,
   LB_PROGRESS,
@@ -75,7 +74,6 @@ export const HomePage: React.FC = () => {
 
       <LiquidityBuffer
         title={LB_TITLE}
-        trend={LB_TREND}
         progress={LB_PROGRESS}
         chart={{
           data: LB_CHART_DATA,

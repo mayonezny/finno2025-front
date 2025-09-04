@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { dioColumns, dioRows } from '@/entities/smart-table/dio.data';
 import { dpoColumns, dpoRows } from '@/entities/smart-table/dpo.data';
@@ -13,6 +14,8 @@ import { colorRuleLowerIsBetter, colorRuleHigherIsBetter } from '../lib/rules';
 import type { WorkingCapitalProps } from '../model/types';
 import './WorkingCapital.scss';
 
+const netProfitQuestion = 'По каким метрикам рассчитан цикл оборотного капитала?';
+
 export const WorkingCapital: React.FC<WorkingCapitalProps> = ({
   data,
   unit = 'дней',
@@ -22,9 +25,9 @@ export const WorkingCapital: React.FC<WorkingCapitalProps> = ({
   padding = '12px 16px',
 }) => {
   const { dso, dpo, dio } = data;
+  const navigate = useNavigate();
 
   const ccc = dio.value + dso.value - dpo.value;
-  const operatingCycle = dio.value + dso.value;
 
   const [openDSO, setOpenDSO] = React.useState(false);
   const [openDPO, setOpenDPO] = React.useState(false);
@@ -34,11 +37,40 @@ export const WorkingCapital: React.FC<WorkingCapitalProps> = ({
   const dpoData = React.useMemo<DpoRow[]>(() => dpoRows.map((r) => r.data), []);
   const dioData = React.useMemo<DioRow[]>(() => dioRows.map((r) => r.data), []);
 
+  const AiQuestionHandler = (text: string) => {
+    navigate('/ai');
+
+    setTimeout(() => {
+      const input = document.querySelector<HTMLInputElement>('.prompt-bar__input');
+      const button = document.querySelector<HTMLButtonElement>('.submit-button');
+
+      if (!input || !button) {
+        console.warn('Не найден input или submit-button');
+        return;
+      }
+
+      input.value = text;
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+
+      // клик без сабмита
+      setTimeout(() => {
+        button.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+      }, 100);
+
+      button.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+    }, 100);
+  };
+
   return (
     <div className="working-capital">
       <div className="wc__row">
         <div className="h2">Оборотный капитал</div>
-        <InfoCard name={`CCC: ${formatCompactNumber(ccc, fractionDigits)} ${unit}`} />
+        <InfoCard
+          name="Спросить у ИИ"
+          type="glow"
+          clickable
+          onClick={() => AiQuestionHandler(netProfitQuestion)}
+        />
       </div>
 
       <div className="wc__wrapper">
@@ -100,7 +132,7 @@ export const WorkingCapital: React.FC<WorkingCapitalProps> = ({
       <div className="wc__row">
         <div className="h3">Цикл оборотного капитала</div>
         <div className="h3">
-          {operatingCycle + dpo.value} {unit}
+          {formatCompactNumber(ccc, fractionDigits)} {unit}
         </div>
       </div>
 
