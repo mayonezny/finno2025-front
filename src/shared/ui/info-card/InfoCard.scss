@@ -48,3 +48,22 @@
   background-color: var(--color-light-yellow);
   color: var(--color-dark-yellow);
 }
+
+.glow-card {
+  background: linear-gradient(270deg, #996eff, #6460eb, #2de3ec);
+  background-size: 600% 600%;
+  animation: gradientShift 6s ease infinite;
+  color: #fff;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

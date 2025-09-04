@@ -25,7 +25,7 @@ const SCENARIO_OPTIONS: (isMobile: boolean) => ButtonSelectorOption[] = (isMobil
   { value: 'opt', label: isMobile ? 'Оптимист.' : 'Оптимистичный' },
 ];
 
-const netProfitQuestion = 'Расскажи подробнее о том как была высчитана чистая прибыль';
+const netProfitQuestion = 'Расскажи подробнее, как была высчитана чистая прибыль?';
 
 function colorByChange(changeLabel: string): string {
   const clean = changeLabel.trim();
@@ -187,8 +187,8 @@ export const ScenarioPage: React.FC = () => {
             className="netProfit"
             hint={
               <InfoCard
-                name="Спросить у нейросети"
-                type="neutral"
+                name="Спросить у ИИ"
+                type="glow"
                 clickable
                 onClick={() => AiQuestionHandler(netProfitQuestion)}
               />
