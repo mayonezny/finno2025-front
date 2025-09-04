@@ -4,19 +4,12 @@ import './HomePage.scss';
 import { useSelector } from 'react-redux';
 
 import {
-  KPI_METRICS,
   TREEMAP_TITLE,
   TREEMAP_HHI,
   TREEMAP_DATA,
-  LB_TITLE,
-  LB_CHART_DATA,
-  LB_CHART_RIGHT_LABEL,
-  LB_PROGRESS,
-  LB_SHEET_TITLE,
   REPAYMENT_DATA,
   REPAYMENT_LEGEND,
   REPAYMENT_WACD,
-  WORKING_CAPITAL_DATA,
   buildRepaymentDetail,
   buildRepaymentDefaultDetail,
 } from '@/entities/homepage';
@@ -25,7 +18,6 @@ import {
   mapWeeklyToLiqBuffer,
   mapWeeklyToWorkingCapital,
 } from '@/entities/homepage/homepage.mapper';
-import type { TrendDirection } from '@/entities/jsonSkeleton/model/types';
 import { cashColumns, cashRows } from '@/entities/smart-table/cashflows.data';
 import { fmtMoneyRu } from '@/entities/smart-table/smartTable.format';
 import type { CashAccountRow } from '@/entities/smart-table/types';

@@ -2,7 +2,6 @@ import type { BarDatum, LegendItem } from '@/shared/ui/bar-chart';
 import type { DetailCardData } from '@/shared/ui/detail-card';
 import type { TreemapItem } from '@/shared/ui/treemap';
 import type { Metric as KpiMetric } from '@/widgets/kpi-stats';
-import type { BreakdownItem } from '@/widgets/liquidity-buffer/model/types';
 
 // ───────────────────────────────────────────────────────────────────────────────
 // KPI

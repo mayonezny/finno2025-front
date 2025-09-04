@@ -6,13 +6,11 @@ import type { TrendDirection, WeeklyReport } from '../jsonSkeleton/model/types';
 
 const dir = (delta: number): TrendDirection => (delta > 0 ? 'up' : delta < 0 ? 'down' : 'none');
 
-const pct = (x: number) => Math.round(x * 1000) / 10; // 0.176 -> 17.6
 const round0 = (x: number) => Math.round(x);
 const round1 = (x: number) => Math.round(x * 10) / 10;
 
 export function mapWeeklyToKpis(weekly: WeeklyReport): KpiMetric[] {
   const s = weekly.report.summary;
-  const r = weekly.report.revenue_block;
 
   const metrics: KpiMetric[] = [
     // Денежка

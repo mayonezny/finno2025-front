@@ -11,12 +11,12 @@ import { ProgressMeter } from '@/shared/ui/progress-meter/ui/ProgressMeter';
 import './LiquidityBuffer.scss';
 import type { CashFlowEntry } from '@/entities/jsonSkeleton/model/types';
 
-type BreakdownItem = {
-  title: string;
-  amount: number;
-  sharePct?: number;
-  trend?: { value: number; direction: 'up' | 'down' | 'none'; unit?: string };
-};
+// type BreakdownItem = {
+//   title: string;
+//   amount: number;
+//   sharePct?: number;
+//   trend?: { value: number; direction: 'up' | 'down' | 'none'; unit?: string };
+// };
 
 export type LiquidityBufferProps = {
   title?: string;

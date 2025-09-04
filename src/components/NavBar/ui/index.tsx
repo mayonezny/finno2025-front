@@ -44,7 +44,7 @@ export const NavBar: React.FC = () => {
   const pickerRef = useRef<DatePickerRef>(null);
 
   const [isDPOpen, setDPOpen] = useState(false);
-  const [dpInput, setdpInput] = useState('');
+  //const [dpInput, setdpInput] = useState('');
 
   const go = (path: string) => {
     navigate(path);
@@ -139,7 +139,7 @@ export const NavBar: React.FC = () => {
                 <DatePicker
                   ref={pickerRef}
                   value={null}
-                  onChange={() => setdpInput(pickerRef.current!.value)}
+                  onChange={() => /*setdpInput(pickerRef.current!.value)*/ {}}
                 />
               </motion.div>
             )}
@@ -160,9 +160,7 @@ export const MobileNavBar: React.FC = () => {
   const pickerRef = useRef<DatePickerRef>(null);
 
   const [isDPOpen, setDPOpen] = useState(false);
-  const [dpInput, setdpInput] = useState('');
-
-  const [isCollapsed, setCollapsed] = useState(true);
+  // const [dpInput, setdpInput] = useState('');
 
   const easeOut = cubicBezier(0.16, 1, 0.3, 1);
   const easeIn = cubicBezier(0.4, 0, 0.2, 1);
@@ -292,7 +290,7 @@ export const MobileNavBar: React.FC = () => {
                       <DatePicker
                         ref={pickerRef}
                         value={null}
-                        onChange={() => setdpInput(pickerRef.current!.value)}
+                        onChange={() => /*setdpInput(pickerRef.current!.value)*/ {}}
                       />
                     </motion.div>
                   )}
