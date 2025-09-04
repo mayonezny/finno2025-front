@@ -133,6 +133,9 @@ export const WorkingCapital: React.FC<WorkingCapitalProps> = ({
         <div className="h3">Цикл оборотного капитала</div>
         <div className="h3">
           {formatCompactNumber(ccc, fractionDigits)} {unit}
+
+          {ccc} {unit}
+
         </div>
       </div>
 
