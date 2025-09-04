@@ -91,7 +91,6 @@ export const HomePage: React.FC = () => {
 
       <LiquidityBuffer
         title={liqbuf.title}
-        trend={liqbuf.trend}
         progress={liqbuf.progress}
         chart={liqbuf.chart}
         chartRightLabel={liqbuf.chartRightLabel}
