@@ -1,71 +1,11 @@
-# Это готовый темплейт фронтенда для проекта "AI-казначей" Финнополис 2025
+## AI-ассистент для казначейской функции
 
-### React + TypeScript + Vite
+#### В данном репозитории вы можете найти исходный код клиентской приложения, разработанного в рамках кейс-чемпионата Finopolis2025 - трек "Искусственный интеллект", кейс "AI-ассистент для казначейской функции"
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+https://hack.uwu-devcrew.ru
 
-Currently, two official plugins are available:
+Приложение представляет из себя многостраничный дашборд с внедренным искусственным интеллектом, который принимает и наглядно отображает информацию о финансовом состоянии компании, а также предоставляет сценарную аналитику (прогнозирование) для трех исходов - нейтральный, положительный, и отрицательный. AI-ассистент получает данные о компании, и на их основе даёт советы по финансовым вопросам.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x';
-import reactDom from 'eslint-plugin-react-dom';
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
-```
+Репозиторий серверной части приложения:
+https://github.com/mayonezny/finno2025-api
+и
