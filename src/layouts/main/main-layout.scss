@@ -3,11 +3,13 @@
   grid-template-columns: auto 1fr;
   width: 100%;
   background-color: #fafcff;
+  max-height: 100vh;
 }
 @media (max-width: 1000px) {
   .MainLayout {
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 100dvh;
   }
 }

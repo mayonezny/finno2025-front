@@ -1,16 +1,21 @@
 .NavBar {
-  position: relative;
+  position: sticky;
   display: flex;
   flex-direction: column;
   padding: 32px 16px;
   z-index: 10;
-  gap: 24px;
+
   top: 0;
   left: 0;
   width: 64px;
   border-right: var(--border);
   background-color: #fff;
-
+  &__wr {
+    display: flex;
+    flex-direction: column;
+    height: 95vh;
+    gap: 24px;
+  }
   svg {
     color: var(--color-dark-red);
     cursor: pointer;
@@ -22,7 +27,16 @@
     display: flex;
     flex-direction: column;
     gap: 8px; /* чуть меньше — меньше рывков */
+    flex: 1;
   }
+}
+.navbar-datepicker {
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: #fff;
+}
+.last {
+  margin-top: auto;
 }
 .row {
   display: flex;

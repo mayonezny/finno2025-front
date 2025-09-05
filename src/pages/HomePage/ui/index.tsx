@@ -1,27 +1,30 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import './HomePage.scss';
 
+import { useSelector } from 'react-redux';
+
 import {
-  KPI_METRICS,
   TREEMAP_TITLE,
   TREEMAP_HHI,
   TREEMAP_DATA,
-  LB_TITLE,
-  LB_TREND,
-  LB_CHART_DATA,
-  LB_CHART_RIGHT_LABEL,
-  LB_PROGRESS,
-  LB_SHEET_TITLE,
-  LB_SHEET_ITEMS,
   REPAYMENT_DATA,
   REPAYMENT_LEGEND,
   REPAYMENT_WACD,
-  WORKING_CAPITAL_DATA,
   buildRepaymentDetail,
   buildRepaymentDefaultDetail,
 } from '@/entities/homepage';
+import {
+  mapWeeklyToKpis,
+  mapWeeklyToLiqBuffer,
+  mapWeeklyToWorkingCapital,
+} from '@/entities/homepage/homepage.mapper';
+import { cashColumns, cashRows } from '@/entities/smart-table/cashflows.data';
+import { fmtMoneyRu } from '@/entities/smart-table/smartTable.format';
+import type { CashAccountRow } from '@/entities/smart-table/types';
+import type { RootState } from '@/redux-rtk';
 import { useMediaQuery } from '@/utils/hooks/useMediaQuery';
 import { CashflowTreemap } from '@/widgets/cashflow-treemap';
+import DataTableModal from '@/widgets/data-modal/ui/DataTableModal';
 import { KpiStats } from '@/widgets/kpi-stats';
 import { LiquidityBuffer } from '@/widgets/liquidity-buffer/ui/LiquidityBuffer';
 import { RepaymentChart } from '@/widgets/repayment-chart/ui/RepaymentChart';
@@ -29,6 +32,18 @@ import { WorkingCapital } from '@/widgets/working-capital';
 
 export const HomePage: React.FC = () => {
   const isMobile = useMediaQuery('(max-width: 1149px)');
+  const [cashOpen, setCashOpen] = React.useState(false);
+
+  const cashData: CashAccountRow[] = React.useMemo(() => cashRows.map((r) => r.data), []);
+
+  const weekly = useSelector((s: RootState) => {
+    const data = s.statsReducer.stats;
+    return data[data.length - 1];
+  });
+
+  const metrics = useMemo(() => mapWeeklyToKpis(weekly), [weekly]);
+  const liqbuf = mapWeeklyToLiqBuffer(weekly);
+  const workingCapital = mapWeeklyToWorkingCapital(weekly);
 
   return (
     <div className="HomePage">
@@ -36,31 +51,43 @@ export const HomePage: React.FC = () => {
         layout={isMobile ? 'vertical' : 'horizontal'}
         {...(isMobile && { title: 'Ключевые показатели' })}
         collapsible
-        metrics={KPI_METRICS}
+        metrics={metrics}
       />
 
       <CashflowTreemap
         title={TREEMAP_TITLE}
         HHI={TREEMAP_HHI}
         data={TREEMAP_DATA}
-        onTileClick={() => {}}
+        onTileClick={() => setCashOpen(true)}
+      />
+
+      <DataTableModal<CashAccountRow>
+        isOpen={cashOpen}
+        onClose={() => setCashOpen(false)}
+        title="Денежные потоки"
+        data={cashData}
+        columns={cashColumns}
+        groupBy={{ key: 'bank', allLabel: 'Все банки', allToken: 'all' }}
+        search={{ fields: ['bank', 'account'], placeholder: 'Поиск' }}
+        footerLeftLabel="Всего"
+        footerRight={(rows) => {
+          const total = rows.reduce((a, r) => a + r.balance, 0);
+          const banks = new Set(rows.map((r) => r.bank)).size;
+          return (
+            <>
+              {fmtMoneyRu(total)}&nbsp;/&nbsp;{banks} Банков
+            </>
+          );
+        }}
       />
 
       <LiquidityBuffer
-        title={LB_TITLE}
-        trend={LB_TREND}
-        progress={LB_PROGRESS}
-        chart={{
-          data: LB_CHART_DATA,
-          showLabels: true,
-          showValues: true,
-          colorMode: 'single',
-          baseColor: '#d70f2d',
-          maxHeight: 120,
-        }}
-        chartRightLabel={LB_CHART_RIGHT_LABEL}
-        allPaymentsLink={{ label: 'Все платежи', to: '/payments' }}
-        sheet={{ title: LB_SHEET_TITLE, items: LB_SHEET_ITEMS }}
+        title={liqbuf.title}
+        progress={liqbuf.progress}
+        chart={liqbuf.chart}
+        chartRightLabel={liqbuf.chartRightLabel}
+        allPaymentsLink={liqbuf.allPaymentsLink}
+        sheet={liqbuf.sheet}
       />
 
       <RepaymentChart
@@ -79,7 +106,9 @@ export const HomePage: React.FC = () => {
         defaultDetail={buildRepaymentDefaultDetail()}
       />
 
-      <WorkingCapital data={WORKING_CAPITAL_DATA} />
+      <WorkingCapital data={workingCapital} />
     </div>
   );
 };
+
+export default HomePage;

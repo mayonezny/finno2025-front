@@ -1,49 +1,51 @@
+/* eslint-disable arrow-body-style */
 import { X } from 'lucide-react';
 import React, { useLayoutEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router';
 
 import { formatCompactNumber } from '@/shared/lib/format/number';
 import { BarChart } from '@/shared/ui/bar-chart/ui/BarChart';
+import { InfoCard } from '@/shared/ui/info-card';
 import { NavLinkButton } from '@/shared/ui/nav-link-button/ui/NavLinkButton';
 import { ProgressMeter } from '@/shared/ui/progress-meter/ui/ProgressMeter';
-import { TrendTag } from '@/shared/ui/trend-tag/ui/TrendTag';
-
 import './LiquidityBuffer.scss';
+import type { CashFlowEntry } from '@/entities/jsonSkeleton/model/types';
 
-type BreakdownItem = {
-  title: string;
-  amount: number;
-  sharePct?: number;
-  trend?: { value: number; direction: 'up' | 'down' | 'none'; unit?: string };
-};
+// type BreakdownItem = {
+//   title: string;
+//   amount: number;
+//   sharePct?: number;
+//   trend?: { value: number; direction: 'up' | 'down' | 'none'; unit?: string };
+// };
 
-type LiquidityBufferProps = {
+export type LiquidityBufferProps = {
   title?: string;
   progress: React.ComponentProps<typeof ProgressMeter>;
-  trend?: React.ComponentProps<typeof TrendTag>;
   chart: React.ComponentProps<typeof BarChart>;
   chartRightLabel?: string;
   allPaymentsLink?: { label: string; to: string };
-  sheet?: { title: string; items: BreakdownItem[]; total?: number | string };
+  sheet?: { title: string; items: CashFlowEntry[]; total?: number | string };
 };
+
+const netProfitQuestion =
+  'Проанализируй текущее значение буфера ликвидности и расскажи подробнее как он сформирован';
 
 export const LiquidityBuffer: React.FC<LiquidityBufferProps> = ({
   title = 'Буфер ликвидности',
   progress,
-  trend,
   chart,
   chartRightLabel,
   allPaymentsLink = { label: 'Все платежи', to: '/payments' },
   sheet,
 }) => {
-  const [details, setDetails] = useState(false); // false = график, true = карточка
+  const [details, setDetails] = useState(false);
   const toggleDetails = () => setDetails((v) => !v);
 
-  // --- анимация высоты контейнера ---
+  const navigate = useNavigate();
   const wrapRef = useRef<HTMLDivElement>(null);
   const chartRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
 
-  // выставляем начальную высоту и обновляем при переключении/ресайзе
   useLayoutEffect(() => {
     const el = details ? cardRef.current : chartRef.current;
     const wrap = wrapRef.current;
@@ -59,17 +61,45 @@ export const LiquidityBuffer: React.FC<LiquidityBufferProps> = ({
 
     setH();
 
-    // чтобы высота корректно подтягивалась при изменении содержимого
     const ro = new ResizeObserver(setH);
     ro.observe(el);
     return () => ro.disconnect();
-  }, [details, chart.data, sheet?.items]); // можно расширить зависимости, если нужно
+  }, [details, chart.data, sheet?.items]);
+
+  const AiQuestionHandler = (text: string) => {
+    navigate('/ai');
+
+    setTimeout(() => {
+      const input = document.querySelector<HTMLInputElement>('.prompt-bar__input');
+      const button = document.querySelector<HTMLButtonElement>('.submit-button');
+
+      if (!input || !button) {
+        console.warn('Не найден input или submit-button');
+        return;
+      }
+
+      input.value = text;
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+
+      // клик без сабмита
+      setTimeout(() => {
+        button.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+      }, 100);
+
+      button.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+    }, 100);
+  };
 
   return (
     <div className="liquidity-buffer" aria-expanded={details}>
       <div className="lb-row">
         <div className="h2">{title}</div>
-        {trend && <TrendTag {...trend} />}
+        <InfoCard
+          name="Спросить у ИИ"
+          type="glow"
+          clickable
+          onClick={() => AiQuestionHandler(netProfitQuestion)}
+        />
       </div>
 
       <ProgressMeter {...progress} />
@@ -132,16 +162,13 @@ export const LiquidityBuffer: React.FC<LiquidityBufferProps> = ({
 
               <div className="lb-breakdown">
                 {sheet.items.map((it, i) => {
-                  const sign =
-                    it.trend?.direction === 'up' ? '+' : it.trend?.direction === 'down' ? '−' : '';
+                  // const sign =
+                  //   it.trend?.direction === 'up' ? '+' : it.trend?.direction === 'down' ? '−' : '';
                   return (
                     <div key={i} className="lb-breakdown__row">
-                      <div className="body-regular">{it.title}</div>
+                      <div className="body-regular">{it.use}</div>
                       <div className="body-medium">{formatCompactNumber(it.amount)}</div>
-                      {typeof it.sharePct === 'number' && (
-                        <div className="body-regular">{it.sharePct}%</div>
-                      )}
-                      {it.trend && (
+                      {/* {it.trend && (
                         <div
                           className={`body-regular ${
                             it.trend.direction === 'up'
@@ -155,7 +182,7 @@ export const LiquidityBuffer: React.FC<LiquidityBufferProps> = ({
                           {it.trend.value}
                           {it.trend.unit ?? '%'}
                         </div>
-                      )}
+                      )} */}
                     </div>
                   );
                 })}
