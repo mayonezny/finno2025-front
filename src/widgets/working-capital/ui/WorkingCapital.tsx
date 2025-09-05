@@ -5,7 +5,6 @@ import { dioColumns, dioRows } from '@/entities/smart-table/dio.data';
 import { dpoColumns, dpoRows } from '@/entities/smart-table/dpo.data';
 import { dsoColumns, dsoRows } from '@/entities/smart-table/dso.data';
 import type { DsoRow, DpoRow, DioRow } from '@/entities/smart-table/types';
-import { formatCompactNumber } from '@/shared/lib/format/number';
 import { InfoCard } from '@/shared/ui/info-card';
 import { KpiCard } from '@/shared/ui/kpi-card/ui/KpiCard';
 import { DataTableModal } from '@/widgets/data-modal';
