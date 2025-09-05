@@ -25,7 +25,7 @@ export const CashflowTreemap: React.FC<Props> = ({
     <div className="cashflow-treemap">
       <div className="cashflow-treemap__header">
         <div className="h2">{title}</div>
-        <InfoCard name={`HHI: ${HHI}`} type={HHI > 0.3 ? 'neutral' : 'negative'} />
+        <InfoCard className="hhi" name={`HHI: ${HHI}`} type={HHI > 0.3 ? 'neutral' : 'negative'} />
       </div>
 
       <div className="cashflow-treemap__body">

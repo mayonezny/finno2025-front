@@ -17,7 +17,7 @@ const netProfitQuestion = 'По каким метрикам рассчитан �
 
 export const WorkingCapital: React.FC<WorkingCapitalProps> = ({
   data,
-  unit = 'дней',
+  unit = 'дн.',
   fractionDigits = 3,
   bordered = true,
   background = 'var(--color-second-bg)',
