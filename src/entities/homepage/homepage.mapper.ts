@@ -60,7 +60,7 @@ export function mapWeeklyToKpis(weekly: WeeklyReport): KpiMetric[] {
       trend: {
         value: s.net_debt.change,
         unit: '₽',
-        direction: dir(-s.net_debt.change), // рост долга — плохо
+        direction: s.net_debt.change as unknown as TrendDirection, // рост долга — плохо
       },
     },
 

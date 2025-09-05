@@ -61,8 +61,7 @@ export const TREEMAP_DATA: TreemapItem[] = [
   { id: 'sber-2', title: 'Газпром-банк', value: 10_300_000 },
   { id: 'sber-3', title: 'Центр-инвест', value: 5_800_000 },
   { id: 'sber-4', title: 'ВТБ', value: 5_600_000 },
-  { id: 'sber-5', title: 'Сбербанк', value: 200_000 },
-  { id: 'sber-6', title: 'Сбербанк', value: 200_000 },
+  { id: 'sber-5', title: 'Сбербанк', value: 1_200_000 },
 ];
 
 // ───────────────────────────────────────────────────────────────────────────────
